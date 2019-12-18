@@ -9,6 +9,8 @@ tags:
 Mac OS 的 Docker 非常简单易用，无需赘述。
 但对于 Windows 来说，就算有 Docker in Windows，仍推荐使用虚拟机跑 Linux，再到虚拟机里安装 Docker 。VmWare WorkStation Pro、SecureCRT、WinSCP 这三个工具是 Windows 上的神器。
 
+<!-- more -->
+
 ## 安装及常用命令
 
 ``` bash

@@ -6,3 +6,14 @@ tags:
 ---
 ## 学习 React Native 的一个笔记
 
+在使用React Native时，你的JavaScript代码将会运行在两个不同的环境上：
+
+在iOS、Android的模拟器或是真机上，React Native使用的是`JavaScriptCore`，也就是Safari所使用的JavaScript引擎。但是在iOS上JavaScriptCore并没有使用即时编译技术（JIT），因为在iOS中应用无权拥有可写可执行的内存页（因而无法动态生成代码）。
+
+<!-- more -->
+
+在使用Chrome调试时，所有的JavaScript代码都运行在Chrome中，并且通过WebSocket与原生代码通信。此时的运行环境是`V8`引擎。
+
+虽然两个环境非常类似，但开发者还是可能碰到一些不一致的地方。所以请尽量避免使用依赖于特定运行环境的代码。
+
+不同Js运行环境对语法、词法要求不同，解析也会产生不同的效果，从而导致`兼容性问题`。

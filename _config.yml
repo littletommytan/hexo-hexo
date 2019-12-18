@@ -2,12 +2,12 @@
 
 # Site
 title: 水滴石穿
-subtitle: ''
-description: '弱者才会相信运气，强者只相信因果。Nodejs + Golang 全栈开发者'
+subtitle: '弱者才会相信运气，强者只相信因果'
+description: 'Nodejs + Golang 全栈开发者'
 keywords:
 author: littletommytan
-language: zh-Hans
-timezone: ''
+language: zh-CN
+timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -39,13 +39,13 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ''
   wrap: true
   hljs: false
