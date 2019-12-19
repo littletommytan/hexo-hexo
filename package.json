@@ -1,6 +1,6 @@
 {
   "name": "littletommytan-hexo-site",
-  "version": "0.0.1",
+  "version": "0.0.1-dev",
   "private": true,
   "scripts": {
     "build": "hexo generate",
