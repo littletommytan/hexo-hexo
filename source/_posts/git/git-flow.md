@@ -2,7 +2,8 @@
 title: 基于 Git 的工作流
 date: 2018-12-02
 tags:
-  - CI/CD
+  - DevOps
+  - Git
 ---
 
 三条主分支：`master` & `release` & `production`，贯彻整个流程始终，需要设置为protected branch，杜绝直接commit和merge代码

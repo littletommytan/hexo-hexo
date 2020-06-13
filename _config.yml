@@ -3,7 +3,7 @@
 # Site
 title: 水滴石穿
 subtitle: '弱者才会相信运气，强者只相信因果'
-description: 'Nodejs + Golang 全栈开发者'
+description: 'Cocos, Nodejs, Java, Golang'
 keywords:
 author: littletommytan
 language: zh-CN
@@ -11,7 +11,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.colorcat.com
+url: https://littletommytan.colorcat.online
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

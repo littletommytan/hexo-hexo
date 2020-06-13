@@ -3,7 +3,6 @@ title: Serverless 初尝试
 date:  2018-12-05
 tags:
   - 云原生
-  - 架构
 ---
 ### Serverless是解决服务器压力的重要途径之一。
 

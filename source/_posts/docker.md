@@ -3,7 +3,7 @@ title: 我的 Docker 入门笔记
 date:  2018-11-12
 tags:
   - Docker
-  - Cloud Native
+  - 云原生
 ---
 ## 开发环境选型
 Mac OS 的 Docker 非常简单易用，无需赘述。
