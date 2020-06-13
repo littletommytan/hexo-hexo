@@ -8,46 +8,46 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v1
-      - name: Use Node.js 10
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10
-          registry-url: https://registry.npmjs.org/
-      - name: Lint
-        run: |
-          yarn install
-          yarn lint
-        env:
-          CI: true
-      - name: Tag, Yarn build And Upload
-        if: github.ref == 'refs/heads/production' || github.ref == 'refs/heads/staging'
-        run: |
-          # HEXO_VERSION
-          HEXO_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g' | awk -F[-] '{ print $1 }')
-          # HEXO_ENV
-          HEXO_ENV=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g' | awk -F[-] '{ print $2 }')
-          # HEXO_TAG
-          HEXO_TAG=$HEXO_VERSION-$HEXO_ENV
-          # echo ENV
-          echo TAG is $HEXO_TAG
-          echo repository is $GITHUB_REPOSITORY
-          echo branch is $GITHUB_REF | awk -Frefs/heads/ '{ print $2 }'
-          echo POST ref data is '{"ref":"'refs/tags/$HEXO_TAG'","sha":"'$GITHUB_SHA'"}'
-          # TAG is existed?
-            if git rev-list $TAG >/dev/null 2>&1 ; then
-              echo "Tag $HEXO_TAG was existed."
-            else
-              # POST a new ref to repo via Github API.
-              curl -s -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/git/refs \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -d '{"ref":"'refs/tags/$HEXO_TAG'","sha":"'$GITHUB_SHA'"}'
-              # Build and Upload
-              yarn install
-              yarn build
-              yarn upload
-            fi
-        env:
-          CD: true
-          QINIU_AK: ${{ secrets.QINIU_AK }}
-          QINIU_SK: ${{ secrets.QINIU_SK }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Use Node.js 10
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 10
+      #     registry-url: https://registry.npmjs.org/
+      # - name: Lint
+      #   run: |
+      #     yarn install
+      #     yarn lint
+      #   env:
+      #     CI: true
+      # - name: Tag, Yarn build And Upload
+      #   if: github.ref == 'refs/heads/production' || github.ref == 'refs/heads/staging'
+      #   run: |
+      #     # HEXO_VERSION
+      #     HEXO_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g' | awk -F[-] '{ print $1 }')
+      #     # HEXO_ENV
+      #     HEXO_ENV=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g' | awk -F[-] '{ print $2 }')
+      #     # HEXO_TAG
+      #     HEXO_TAG=$HEXO_VERSION-$HEXO_ENV
+      #     # echo ENV
+      #     echo TAG is $HEXO_TAG
+      #     echo repository is $GITHUB_REPOSITORY
+      #     echo branch is $GITHUB_REF | awk -Frefs/heads/ '{ print $2 }'
+      #     echo POST ref data is '{"ref":"'refs/tags/$HEXO_TAG'","sha":"'$GITHUB_SHA'"}'
+      #     # TAG is existed?
+      #       if git rev-list $TAG >/dev/null 2>&1 ; then
+      #         echo "Tag $HEXO_TAG was existed."
+      #       else
+      #         # POST a new ref to repo via Github API.
+      #         curl -s -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/git/refs \
+      #         -H "Authorization: token $GITHUB_TOKEN" \
+      #         -d '{"ref":"'refs/tags/$HEXO_TAG'","sha":"'$GITHUB_SHA'"}'
+      #         # Build and Upload
+      #         yarn install
+      #         yarn build
+      #         yarn upload
+      #       fi
+      #   env:
+      #     CD: true
+      #     QINIU_AK: ${{ secrets.QINIU_AK }}
+      #     QINIU_SK: ${{ secrets.QINIU_SK }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

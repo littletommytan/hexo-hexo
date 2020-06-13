@@ -5,4 +5,4 @@ tags:
   - Java
 ---
 
-<img src="/images/Redis 之如何设计缓存系统缓存穿透，缓存击穿，缓存雪崩解决方案.png" width="100%">
+<img src="/images/Redis redis1.png" width="100%">

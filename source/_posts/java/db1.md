@@ -5,4 +5,4 @@ tags:
   - Java
 ---
 
-<img src="/images/不用找了，大厂在用的分库分表方案，都在这里！.png" width="100%">
+<img src="/images/db1.png" width="100%">

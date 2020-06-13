@@ -7,7 +7,7 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
-    "upload":"node tools/qiniu/index.js"
+    "upload": "node tools/qiniu/index.js"
   },
   "hexo": {
     "version": "4.1.1"
