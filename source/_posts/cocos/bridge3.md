@@ -1,6 +1,7 @@
 ---
-title: Cocos 客户端开发中的三座桥（其三） SDKWrapper / SDKManager
+title: Cocos 客户端开发中的三座桥（其三）SDKManager
 date: 2020-01-07
+top: true
 tags:
   - Cocos
 ---
