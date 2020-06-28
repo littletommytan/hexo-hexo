@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [140],
+  "search.exclude": {
+    "**/node_modules": true,
+    "build/": true,
+    "library/": true,
+    "temp/": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
