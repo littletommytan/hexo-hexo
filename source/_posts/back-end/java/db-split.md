@@ -5,4 +5,4 @@ tags:
   - Java
 ---
 
-<img src="/images/db1.png" width="100%">
+<img src="/images/db-split.png" width="100%">

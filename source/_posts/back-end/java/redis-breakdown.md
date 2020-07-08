@@ -5,4 +5,4 @@ tags:
   - Java
 ---
 
-<img src="/images/Redis redis1.png" width="100%">
+<img src="/images/redis-breakdown.png" width="100%">
