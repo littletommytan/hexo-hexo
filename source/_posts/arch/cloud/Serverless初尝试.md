@@ -20,7 +20,7 @@ tags:
 高可用
 服务解耦
 
-### 缺点：
+### 缺点
 
 CI/CD 难度较高
 
@@ -30,4 +30,4 @@ CI/CD 难度较高
 原因是 NoSql 具有天生的分布式，分区分片比较合适。故分片是表格存储比较重要的概念，表现为分片键，如以下 uuid，具体优点见文档：https://help.aliyun.com/document_detail/27356.html
 
 某个表的信息：
-![tablestore.png](/images/tablestore.png)
+<img alt="tablestore" src="/images/tablestore.png" width="70%"/>
