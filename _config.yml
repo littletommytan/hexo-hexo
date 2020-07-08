@@ -2,12 +2,12 @@
 
 # Site
 title: 水滴石穿
-subtitle: '弱者才会相信运气，强者只相信因果'
-description: 'Cocos, Nodejs, Java, Golang'
+subtitle: "弱者才会相信运气，强者只相信因果"
+description: "Advanced Front-end Engineer in Pinduoduo Inc."
 keywords:
-author: littletommytan
+author: littletommytan 崖心
 language: zh-CN
-timezone: 'Asia/Shanghai'
+timezone: "Asia/Shanghai"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -36,7 +36,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
@@ -46,7 +46,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: false
 
@@ -55,7 +55,7 @@ highlight:
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 
@@ -96,4 +96,4 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
+  type: ""
