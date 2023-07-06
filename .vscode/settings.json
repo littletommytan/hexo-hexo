@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [140],
+  "editor.rulers": [145],
   "search.exclude": {
     "**/node_modules": true,
     "build/": true,
