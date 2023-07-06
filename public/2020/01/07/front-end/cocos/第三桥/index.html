@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://littletommytan.colorcat.online').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="三、SdkManager上面提到的两座桥是真桥，这第三座则是我自己膨胀出的结果，让一个底层之上的东西比肩 JNI 和 JSB。为什么那么嚣张，因为这个东西直接 PK 掉了 JSB。 先让我们看看它的设计架构： SdkManager 身处 C++层，向下通过 JNI 与 Java 层交互接受生命周期调用，向上通过 JSB 提供 Javascript 接口，同层管理各个 Sdk。  它是一个 Life">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos 客户端开发中的三座桥（其三）SDKManager">
+<meta property="og:url" content="https://littletommytan.colorcat.online/2020/01/07/front-end/cocos/%E7%AC%AC%E4%B8%89%E6%A1%A5/index.html">
+<meta property="og:site_name" content="水滴石穿">
+<meta property="og:description" content="三、SdkManager上面提到的两座桥是真桥，这第三座则是我自己膨胀出的结果，让一个底层之上的东西比肩 JNI 和 JSB。为什么那么嚣张，因为这个东西直接 PK 掉了 JSB。 先让我们看看它的设计架构： SdkManager 身处 C++层，向下通过 JNI 与 Java 层交互接受生命周期调用，向上通过 JSB 提供 Javascript 接口，同层管理各个 Sdk。  它是一个 Life">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/cocos/bridge/i3.png">
+<meta property="article:published_time" content="2020-01-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-04T05:13:15.989Z">
+<meta property="article:author" content="littletommytan">
+<meta property="article:tag" content="Cocos">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://littletommytan.colorcat.online/images/cocos/bridge/i3.png">
+
+<link rel="canonical" href="https://littletommytan.colorcat.online/2020/01/07/front-end/cocos/%E7%AC%AC%E4%B8%89%E6%A1%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Cocos 客户端开发中的三座桥（其三）SDKManager | 水滴石穿</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">水滴石穿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">弱者才会相信运气，强者只相信因果</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2020/01/07/front-end/cocos/%E7%AC%AC%E4%B8%89%E6%A1%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Cocos 客户端开发中的三座桥（其三）SDKManager
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-07T00:00:00+08:00">2020-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="三、SdkManager"><a href="#三、SdkManager" class="headerlink" title="三、SdkManager"></a>三、SdkManager</h2><p>上面提到的两座桥是真桥，这第三座则是我自己膨胀出的结果，让一个底层之上的东西比肩 JNI 和 JSB。为什么那么嚣张，因为这个东西直接 PK 掉了 JSB。</p>
+<p>先让我们看看它的设计架构：<br><img src="/images/cocos/bridge/i3.png" width="30%"></p>
+<p>SdkManager 身处 C++层，向下通过 JNI 与 Java 层交互接受生命周期调用，向上通过 JSB 提供 Javascript 接口，同层管理各个 Sdk。</p>
+<ul>
+<li>它是一个 Lifecycle 分发器：当收到生命周期函数调用时，它会将其分发给其下管理的所有 Sdk。所以各个 Sdk 不需要前往各地注册生命周期调用函数，只需要继承并实现 Sdk 基类中对应的生命周期函数即可。</li>
+<li>它是一个 Sdk Method 路由器：通过 call 方法，SdkManager 可以找到对应的 Sdk 和 Method 调用它，并返回结果。</li>
+<li>它是一个中间件：通过 C++提供统一的接口，屏蔽了 iOS 与 Android 的接口差异。</li>
+<li>它很安全：它没有用到任何反射代码，不用为 iOS 多变的审核条款而提心吊胆。</li>
+</ul>
+<p>下面是 SdkMannger 在头文件中的定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SdkManager.h</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SdkManager</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> SKIP_BY_AUTO_BINDINGS</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addSdk</span><span class="params">(Sdk *sdk)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">removeSdk</span><span class="params">(Sdk *sdk)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Sdk *<span class="title">getSdk</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;name)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;clazz, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> Sdk::SdkCallback &amp;callback)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *appController;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *viewController;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *window;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidFinishLaunching</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationWillResignActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidBecomeActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidEnterBackground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationWillEnterForeground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationWillTerminate</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">applicationOpenURL</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSURL, <span class="keyword">void</span> *iosNSDictionary)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationdidRegisterForRemoteNotificationsWithDeviceToken</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSData)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveLocalNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUILocalNotification)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidRegisterUserNotificationSettings</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIUserNotificationSettings)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationHandleActionWithIdentifierForRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSString, <span class="keyword">void</span> *iosNSDictionary, <span class="keyword">void</span> *completionHandler)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidFailToRegisterForRemoteNotificationsWithError</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSError)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">applicationSupportedInterfaceOrientationsForWindow</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIWindow)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) &amp;&amp; !defined(SKIP_BY_AUTO_BINDINGS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *appActivity;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *glSurfaceView;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnCreate</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnPause</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnResume</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnDestroy</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnStart</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnRestart</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnStop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnNewIntent</span><span class="params">(<span class="keyword">void</span> *intent)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnActivityResult</span><span class="params">(<span class="keyword">int</span> request, <span class="keyword">int</span> result, <span class="keyword">void</span> *intent)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnBackPressed</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnSaveInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnRestoreInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnConfigurationChanged</span><span class="params">(<span class="keyword">void</span> *configuration)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，大部分的行数都被生命周期调用占据了，其他的包含 Sdk 的<code>add</code>, <code>remove</code>和<code>get</code>方法，最后是一个<code>call</code>方法 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::function&lt;<span class="keyword">void</span>(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;result)&gt; SdkCallback;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;clazz, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> Sdk::SdkCallback &amp;callback)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Sdk *sdk = getSdk(clazz);</span><br><span class="line">    <span class="keyword">if</span>(sdk) &#123;</span><br><span class="line">        sdk-&gt;call(method, params, callback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>call</code>方法的参数列表分别表示<code>类名</code>、<code>方法名</code>、<code>参数</code>、和<code>返回值</code>。</p>
+<ul>
+<li>类名：用于确定业务层需要使用哪一个 Sdk</li>
+<li>方法名：用于确定业务层需要使用哪一个方法</li>
+<li>参数：作为输入传参，它是字符串类型的，你可以用任何方式将你的参数转化为一串字符传递给 Sdk，然后在 Sdk 中将其再拆解开来。推荐的格式是 Json，当然你也可以使用自己的方式进行组合和拆解，SdkManager 对此并不关心。</li>
+<li>返回值：返回值使用 callback 的形式，并且 callback 的参数也是字符串类型（同<code>参数</code>使用方法）。之所以使用 callback 的方式，是因为这样可以同时解决同步与异步的问题。举个例子：登录时你可以在一系列用户操作之后拿到 token，再使用 callback 返回这个 token，而不用另外想办法将其传回 Js 层。</li>
+</ul>
+<p>Sdk 是所有业务 Sdk 的基类，它提供的<code>生命周期函数</code>都等待着业务 Sdk 的实现，<code>call</code>方法少了<code>类名</code>，同样等待业务 Sdk 的实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sdk</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> SdkManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    CC_SYNTHESIZE(<span class="built_in">std</span>::<span class="built_in">string</span>, _name, Name);</span><br><span class="line"></span><br><span class="line">    Sdk(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;name);</span><br><span class="line">    <span class="keyword">virtual</span> ~Sdk();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">typedef</span> <span class="built_in">std</span>::function&lt;<span class="keyword">void</span>(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;result)&gt; SdkCallback;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> SdkCallback &amp;callback)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidFinishLaunching</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillResignActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidBecomeActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidEnterBackground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillEnterForeground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillTerminate</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">applicationOpenURL</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSURL, <span class="keyword">void</span> *iosNSDictionary)</span> </span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationdidRegisterForRemoteNotificationsWithDeviceToken</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSData)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveLocalNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUILocalNotification)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidRegisterUserNotificationSettings</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIUserNotificationSettings)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationHandleActionWithIdentifierForRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSString, <span class="keyword">void</span> *iosNSDictionary, <span class="keyword">void</span> *completionHandler)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidFailToRegisterForRemoteNotificationsWithError</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSError)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span>  <span class="title">applicationSupportedInterfaceOrientationsForWindow</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIWindow)</span> </span>&#123; <span class="keyword">return</span> <span class="comment">/*UIInterfaceOrientationMaskPortrait*/</span><span class="number">0x02</span>; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnCreate</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnPause</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnResume</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnDestroy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnStart</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnRestart</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnStop</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnNewIntent</span><span class="params">(<span class="keyword">void</span> *intent)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnActivityResult</span><span class="params">(<span class="keyword">int</span> request, <span class="keyword">int</span> result, <span class="keyword">void</span> *intent)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnBackPressed</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnSaveInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnRestoreInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnConfigurationChanged</span><span class="params">(<span class="keyword">void</span> *configuration)</span> </span>&#123;&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这是微信 Sdk 重写<code>call</code>的例子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WechatSdk::call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> SdkCallback &amp;callback)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(method == <span class="string">"login"</span>) &#123;</span><br><span class="line">        login(callback);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(method == <span class="string">"loginWithQrcode"</span>) &#123;</span><br><span class="line">        loginWithQrcode(callback);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(method == <span class="string">"isWXAppInstalled"</span>) &#123;</span><br><span class="line">        <span class="keyword">bool</span> ret = isWXAppInstalled();</span><br><span class="line">        callback(ret ? <span class="string">"true"</span> : <span class="string">"false"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(method == <span class="string">"getWXAppInstallUrl"</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> url = getWXAppInstallUrl();</span><br><span class="line">        callback(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了能在 Javascript 层有一个 <strong>漂亮</strong> 的 Sdk 接口，或许你还应该写一个 Js 的封装，把 SdkManager 的调用封装一下。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Cocos/" rel="tag"># Cocos</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/15/front-end/cocos/%E7%AC%AC%E4%BA%8C%E6%A1%A5/" rel="prev" title="Cocos 客户端开发中的三座桥（其二） JSB">
+      <i class="fa fa-chevron-left"></i> Cocos 客户端开发中的三座桥（其二） JSB
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/05/front-end/cocos/JSB%E7%BB%91%E5%AE%9A/" rel="next" title="JSB ( Javascript Binding ) 使用笔记">
+      JSB ( Javascript Binding ) 使用笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#三、SdkManager"><span class="nav-number">1.</span> <span class="nav-text">三、SdkManager</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="littletommytan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">littletommytan</p>
+  <div class="site-description" itemprop="description">Advanced Front-end Engineer in a 越用越香的购物平台</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/littletommytan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;littletommytan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/982771996@qq.com" title="E-Mail → 982771996@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备18109713号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littletommytan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

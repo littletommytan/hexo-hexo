@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://littletommytan.colorcat.online').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="余额操作在大多数系统都是不可缺少和不允许出现问题的 如何修改余额 , 这个问题可能在实际项目中 没那么简单;如何修改余额假设一个用户数据 :id⇒12 | user_name⇒ 放放 | fee⇒ 30 | updated_at ⇒ 2019-09-06 15:51:33修改余额 12345678910111213&#x2F;&#x2F;消费金额$spend &#x3D; 10;&#x2F;&#x2F;查询用户余额$user &#x3D; select i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高并发下怎么做余额扣减？（摘抄）">
+<meta property="og:url" content="https://littletommytan.colorcat.online/2019/09/08/back-end/java/blance-descend/index.html">
+<meta property="og:site_name" content="水滴石穿">
+<meta property="og:description" content="余额操作在大多数系统都是不可缺少和不允许出现问题的 如何修改余额 , 这个问题可能在实际项目中 没那么简单;如何修改余额假设一个用户数据 :id⇒12 | user_name⇒ 放放 | fee⇒ 30 | updated_at ⇒ 2019-09-06 15:51:33修改余额 12345678910111213&#x2F;&#x2F;消费金额$spend &#x3D; 10;&#x2F;&#x2F;查询用户余额$user &#x3D; select i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-04T05:13:15.987Z">
+<meta property="article:author" content="littletommytan">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://littletommytan.colorcat.online/2019/09/08/back-end/java/blance-descend/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>高并发下怎么做余额扣减？（摘抄） | 水滴石穿</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">水滴石穿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">弱者才会相信运气，强者只相信因果</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/09/08/back-end/java/blance-descend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高并发下怎么做余额扣减？（摘抄）
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-08T00:00:00+08:00">2019-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>余额操作在大多数系统都是不可缺少和不允许出现问题的 如何修改余额 , 这个问题可能在实际项目中 没那么简单;<br>如何修改余额<br>假设一个用户数据 :<br>id⇒12 | user_name⇒ 放放 | fee⇒ 30 | updated_at ⇒ 2019-09-06 15:51:33<br>修改余额</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//消费金额</span></span><br><span class="line">$spend = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户余额</span></span><br><span class="line">$user = <span class="keyword">select</span> id,fee from <span class="string">`users`</span> where id = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算金额</span></span><br><span class="line">$newFee = $user[<span class="string">'fee'</span>]-$spend;</span><br><span class="line"></span><br><span class="line"><span class="comment">//.. 这里检查余额是否足够</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新余额</span></span><br><span class="line">update <span class="string">`users`</span> set fee = $newFee  where id = <span class="number">12</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>按照正常逻辑来说上面更新余额是没问题的<br>但是如果发生并发 当 A 跟 B 同时发起请求时<br>请求 A 查询出余额为 30<br>请求 B 查询出余额为 30<br>请求 B 更新余额为 20<br>请求 A 更新余额为 20<br>最终用户余额为 20<br>也就是说 用户余额为 30 两个请求都消费了 10 元 即 30 - 10 -10 =10 但是当发生并发请求时 余额最终为 20 这里的金额是错误的<br>在请求 B 修改了 余额之后 请求 A 的查询出来的余额已经不是正确的了 导致了 余额更新错误<br>常见的解决办法 添加数据库的行锁<br>当请求 A 执行时 先加入锁 阻塞 请求 B 直到 请求 A 完成之后 请求 B 才继续执行<br>当然使用事务 并不是那么明智</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开始事务</span></span><br><span class="line">begin;</span><br><span class="line"></span><br><span class="line"><span class="comment">//消费金额</span></span><br><span class="line">$spend = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户余额</span></span><br><span class="line">$user = <span class="keyword">select</span> id,fee from <span class="string">`users`</span> where id = <span class="number">12</span> <span class="keyword">for</span> update;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算金额</span></span><br><span class="line">$newFee = $user[<span class="string">'fee'</span>]-$spend;</span><br><span class="line"></span><br><span class="line"><span class="comment">//.. 这里检查余额是否足够</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新余额</span></span><br><span class="line">update <span class="string">`users`</span> set fee = $newFee where id = <span class="number">12</span>  ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//确认成功之后  提交事务</span></span><br><span class="line">commit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CAS  业务层面乐观锁</span><br><span class="line">什么是  CAS</span><br><span class="line">在更新的时候使用初始值(即查询出来的当前余额)作为条件 compare 限制只有当初始值没有改变时才允许更新成功 set</span><br><span class="line">Compare And Set（CAS）</span><br><span class="line">使用该方式  修改  更新语句</span><br><span class="line"></span><br><span class="line"><span class="comment">//消金额</span></span><br><span class="line">$spend = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户余额</span></span><br><span class="line">$user = <span class="keyword">select</span> id,fee from <span class="string">`users`</span> where id = <span class="number">12</span>;</span><br><span class="line">$oldFee = $user[<span class="string">'fee'</span>];</span><br><span class="line"><span class="comment">//计算金额</span></span><br><span class="line">$newFee = $user[<span class="string">'fee'</span>]-$spend;</span><br><span class="line"></span><br><span class="line"><span class="comment">//.. 这里检查余额是否足够</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新余额</span></span><br><span class="line">update <span class="string">`users`</span> set fee = $newFee   where id = <span class="number">12</span> and fee = $oldFee ;</span><br></pre></td></tr></table></figure>
+
+<p>这里如果发生同时修改产生并发 将只有一边修改成功 这时候如果产生失败 可以对他进行重试等操作<br>为什么不使用 减等于 的 sql 语句<br>例如 :<br>update users set fee = fee - $spend where id = 12 ;<br>这里要再加上余额的判断避免出现  负数金额<br>update users set fee = fee - $spend where id = 12 and fee &gt;= $spend ;<br>稍微改一下这里的更新 语句 也能完成正确的更新 就算是并发也都将正常<br>但是这样做将产生一个问题 不幂等<br>什么是不幂等 ?<br>在相同的条件下 , 执行同一请求,得到的结果相同才符合幂等性</p>
+<p>也即是说<br>fee = fee - $spend  不幂等<br>fee = $newFee 幂等</p>
+<p>不幂等的情况下 如果发生重复执行的情况将产生重复扣款<br>事实上实际业务如何正确的扣款 根据业务的实际情况 可能需要注意更多细节 , 越大的业务量,需要面对更多的问题处理更多的细节. 以上的方案也仅仅是最基础的处理 实际情况需要更多的耐心和思考 共勉之 ~<br>以上.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/11/web/browser/dom-event/" rel="prev" title="DOM 事件模型">
+      <i class="fa fa-chevron-left"></i> DOM 事件模型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/11/front-end/cocos/Creator%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE/" rel="next" title="Cocos Creator 生成项目的启动工作流程（抄录）">
+      Cocos Creator 生成项目的启动工作流程（抄录） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="littletommytan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">littletommytan</p>
+  <div class="site-description" itemprop="description">Advanced Front-end Engineer in a 越用越香的购物平台</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/littletommytan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;littletommytan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/982771996@qq.com" title="E-Mail → 982771996@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备18109713号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littletommytan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

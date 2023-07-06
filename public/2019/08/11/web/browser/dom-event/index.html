@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://littletommytan.colorcat.online').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="DOMDOM 全称是 Document Object Model，即文档对象模型。DOM 是 W3C 的标准，定义了访问 HTML 和 XML 文档的标准。  “文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”  DOM 事件DOM 使 Javascript 有能力对 HTML 上的事件做出反应。这些事件包括鼠标键盘的点击事件、移动事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM 事件模型">
+<meta property="og:url" content="https://littletommytan.colorcat.online/2019/08/11/web/browser/dom-event/index.html">
+<meta property="og:site_name" content="水滴石穿">
+<meta property="og:description" content="DOMDOM 全称是 Document Object Model，即文档对象模型。DOM 是 W3C 的标准，定义了访问 HTML 和 XML 文档的标准。  “文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”  DOM 事件DOM 使 Javascript 有能力对 HTML 上的事件做出反应。这些事件包括鼠标键盘的点击事件、移动事件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/web/dom.png">
+<meta property="article:published_time" content="2019-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-04T05:13:15.990Z">
+<meta property="article:author" content="littletommytan">
+<meta property="article:tag" content="Web 开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://littletommytan.colorcat.online/images/web/dom.png">
+
+<link rel="canonical" href="https://littletommytan.colorcat.online/2019/08/11/web/browser/dom-event/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>DOM 事件模型 | 水滴石穿</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">水滴石穿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">弱者才会相信运气，强者只相信因果</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/08/11/web/browser/dom-event/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DOM 事件模型
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-11T00:00:00+08:00">2019-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>DOM 全称是 Document Object Model，即文档对象模型。DOM 是 W3C 的标准，定义了访问 HTML 和 XML 文档的标准。</p>
+<blockquote>
+<p>“文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”</p>
+</blockquote>
+<h3 id="DOM-事件"><a href="#DOM-事件" class="headerlink" title="DOM 事件"></a>DOM 事件</h3><p>DOM 使 Javascript 有能力对 HTML 上的事件做出反应。这些事件包括鼠标键盘的点击事件、移动事件以及页面中内容的变化等。HTML 元素事件是浏览器内在自动产生的,当有事件发生时 html 元素会向外界(这里主要指元素事件的订阅者)发出各种事件,如 click,onmouseover,onmouseout 等等。</p>
+<h3 id="DOM-事件流及事件模型"><a href="#DOM-事件流及事件模型" class="headerlink" title="DOM 事件流及事件模型"></a>DOM 事件流及事件模型</h3><p>DOM 的结构是一个树形，每当 HTML 元素产生事件时，该事件就会在树的根节点和元素节点之间传播，所有经过的节点都会收到该事件。</p>
+<p>DOM 事件模型分为两类：一类是 IE 所使用的冒泡型事件（Bubbling）；另一类是 DOM 标准定义的冒泡型与捕获型（Capture）的事件。除 IE 外的其他浏览器都支持标准的 DOM 事件处理模型。</p>
+<img src="/images/web/dom.png" width="20%">
+
+<ul>
+<li><h4 id="冒泡型事件处理模型（Bubbling）"><a href="#冒泡型事件处理模型（Bubbling）" class="headerlink" title="冒泡型事件处理模型（Bubbling）"></a>冒泡型事件处理模型（Bubbling）</h4></li>
+</ul>
+<p>如上图所示，冒泡型事件处理模型在事件发生时，首先在最精确的元素上触发，然后向上传播，直到根节点。反映到 DOM 树上就是事件从叶子节点传播到根节点。</p>
+<ul>
+<li><h4 id="捕获型事件处理模型（Captrue）"><a href="#捕获型事件处理模型（Captrue）" class="headerlink" title="捕获型事件处理模型（Captrue）"></a>捕获型事件处理模型（Captrue）</h4></li>
+</ul>
+<p>相反地，捕获型在事件发生时首先在最顶级的元素上触发，传播到最低级的元素上。在 DOM 树上的表现就是由根节点传播到叶子节点。</p>
+<h3 id="标准的-DOM-事件处理模型"><a href="#标准的-DOM-事件处理模型" class="headerlink" title="标准的 DOM 事件处理模型"></a>标准的 DOM 事件处理模型</h3><p>标准的事件处理模型分为三个阶段：</p>
+<ul>
+<li>父元素中所有的捕捉型事件（如果有）自上而下地执行</li>
+<li>目标元素的冒泡型事件（如果有）</li>
+<li>父元素中所有的冒泡型事件（如果有）自下而上地执行</li>
+</ul>
+<h3 id="注册事件监听"><a href="#注册事件监听" class="headerlink" title="注册事件监听"></a>注册事件监听</h3><h4 id="1、传统方式的事件模型即直接在-DOM-元素上绑定事件处理器，例如—"><a href="#1、传统方式的事件模型即直接在-DOM-元素上绑定事件处理器，例如—" class="headerlink" title="1、传统方式的事件模型即直接在 DOM 元素上绑定事件处理器，例如—"></a>1、传统方式的事件模型即直接在 DOM 元素上绑定事件处理器，例如—</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;…&#125;</span><br><span class="line">obj.onmouseover=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;…&#125;</span><br><span class="line">obj.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;…&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先这种方式是无论在 IE 还是 Firefox 等其他浏览器上都可以成功运行的通用方式。这便是它最大的优势了，而且在 Event 处理函数内部的 this 变量无一例外的都只想被绑定的 DOM 元素，这使得 Js 程序员可以大大利用 this 关键字做很多事情。</p>
+<p>至于它的缺点也很明显，就是传统方式只支持 Bubbling，而不支持 Capturing，并且一次只能绑定一个事件处理器在 DOM 元素上，无法实现多 Handler 绑定。最后就是 function 参数中的 event 参数只对非 IE 浏览器有效果(因为 IE 浏览器有特制的 window.event)。</p>
+<h4 id="2、W3C-Firefox-e-g-Event-Module"><a href="#2、W3C-Firefox-e-g-Event-Module" class="headerlink" title="2、W3C (Firefox.e.g) Event Module"></a>2、W3C (Firefox.e.g) Event Module</h4><p>Firefox 等浏览器很坚决的遵循 W3C 标准来制定浏览器事件模型，使用 addEventListener 和 removeEventListener 两个函数，看几个例子—</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(‘load’,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;…&#125;,<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(‘keypress’,<span class="function"><span class="keyword">function</span></span>&#123;…&#125;,<span class="literal">false</span>);</span><br><span class="line">obj.addEventListener(‘mouseover’,MV,<span class="literal">true</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MV</span>(<span class="params"></span>)</span>&#123;…&#125;</span><br></pre></td></tr></table></figure>
+
+<p>addEventListener 带有三个参数，第一个参数是事件类型，就是我们熟知的那些事件名字去掉前面的’on’，第二个参数是处理函数，可以直接给函数字面量或者函数名，第三个参数是 boolean 值，表示事件是否支持 Capturing。</p>
+<p>W3C 的事件模型优点是 Bubbling 和 Capturing 都支持，并且可以在一个 DOM 元素上绑定多个事件处理器，各自并不会冲突。并且在处理函数内部，this 关键字仍然可以使用只想被绑定的 DOM 元素。另外 function 参数列表的第一个位置(不管是否显示调用)，都永远是 event 对象的引用。</p>
+<p>至于它的缺点，很不幸的就只有在市场份额最大的 IE 浏览器下不可使用这一点。</p>
+<h4 id="3、IE-Event-Module"><a href="#3、IE-Event-Module" class="headerlink" title="3、IE Event Module"></a>3、IE Event Module</h4><p>IE 自己的事件模型跟 W3C 的类似，但主要是通过 attachEvent 和 detachEvent 两个函数来实现的。依旧看几个例子吧—</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.attach<span class="constructor">Event(‘<span class="params">onload</span>’,<span class="params">function</span>()</span>&#123;…&#125;);</span><br><span class="line">document.body.attach<span class="constructor">Event(‘<span class="params">onkeypress</span>’,<span class="params">myKeyHandler</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现它跟 W3C 的区别是没有第三个参数，而且第一个表示事件类型的参数也必须把’on’给加上。这种方式的优点就是能绑定多个事件处理函数在同一个 DOM 元素上。</p>
+<p>至于它的缺点，为什么如今在实际开发中很少见呢？首先 IE 浏览器本身只支持 Bubbling 不支持 Capturing；而且在事件处理的 function 内部 this 关键字也无法使用，因为 this 永远都只想 window object 这个全局对象。要想得到 event 对象必须通过 window.event 方式，最后一点，在别的浏览器中，它显然是无法工作的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Web-%E5%BC%80%E5%8F%91/" rel="tag"># Web 开发</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/03/git/semver/" rel="prev" title="语义化版本 SemVer">
+      <i class="fa fa-chevron-left"></i> 语义化版本 SemVer
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/08/back-end/java/blance-descend/" rel="next" title="高并发下怎么做余额扣减？（摘抄）">
+      高并发下怎么做余额扣减？（摘抄） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM"><span class="nav-number">1.</span> <span class="nav-text">DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-事件"><span class="nav-number">2.</span> <span class="nav-text">DOM 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-事件流及事件模型"><span class="nav-number">3.</span> <span class="nav-text">DOM 事件流及事件模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡型事件处理模型（Bubbling）"><span class="nav-number">3.1.</span> <span class="nav-text">冒泡型事件处理模型（Bubbling）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获型事件处理模型（Captrue）"><span class="nav-number">3.2.</span> <span class="nav-text">捕获型事件处理模型（Captrue）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准的-DOM-事件处理模型"><span class="nav-number">4.</span> <span class="nav-text">标准的 DOM 事件处理模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册事件监听"><span class="nav-number">5.</span> <span class="nav-text">注册事件监听</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、传统方式的事件模型即直接在-DOM-元素上绑定事件处理器，例如—"><span class="nav-number">5.1.</span> <span class="nav-text">1、传统方式的事件模型即直接在 DOM 元素上绑定事件处理器，例如—</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、W3C-Firefox-e-g-Event-Module"><span class="nav-number">5.2.</span> <span class="nav-text">2、W3C (Firefox.e.g) Event Module</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、IE-Event-Module"><span class="nav-number">5.3.</span> <span class="nav-text">3、IE Event Module</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="littletommytan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">littletommytan</p>
+  <div class="site-description" itemprop="description">Advanced Front-end Engineer in a 越用越香的购物平台</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/littletommytan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;littletommytan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/982771996@qq.com" title="E-Mail → 982771996@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备18109713号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littletommytan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

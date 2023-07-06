@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://littletommytan.colorcat.online').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="实践地址https:&#x2F;&#x2F;github.com&#x2F;littleTommyTan&#x2F;orange Go-Micro 框架文档 https:&#x2F;&#x2F;micro.mu&#x2F;https:&#x2F;&#x2F;micro.mu&#x2F;docs&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go-Micro 浅尝 ( 微服务之Go-Micro实践 )">
+<meta property="og:url" content="https://littletommytan.colorcat.online/2019/05/21/back-end/go/go-micro-try/index.html">
+<meta property="og:site_name" content="水滴石穿">
+<meta property="og:description" content="实践地址https:&#x2F;&#x2F;github.com&#x2F;littleTommyTan&#x2F;orange Go-Micro 框架文档 https:&#x2F;&#x2F;micro.mu&#x2F;https:&#x2F;&#x2F;micro.mu&#x2F;docs&#x2F;index.html">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/orange/arc.png">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/orange/basic.png">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/orange/proto.jpg">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/orange/error2.png">
+<meta property="og:image" content="https://littletommytan.colorcat.online/images/orange/1toMany.png">
+<meta property="article:published_time" content="2019-05-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-04T05:13:15.987Z">
+<meta property="article:author" content="littletommytan">
+<meta property="article:tag" content="微服务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://littletommytan.colorcat.online/images/orange/arc.png">
+
+<link rel="canonical" href="https://littletommytan.colorcat.online/2019/05/21/back-end/go/go-micro-try/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Go-Micro 浅尝 ( 微服务之Go-Micro实践 ) | 水滴石穿</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">水滴石穿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">弱者才会相信运气，强者只相信因果</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/05/21/back-end/go/go-micro-try/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Go-Micro 浅尝 ( 微服务之Go-Micro实践 )
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-21T00:00:00+08:00">2019-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="实践地址"><a href="#实践地址" class="headerlink" title="实践地址"></a>实践地址</h3><p><a href="https://github.com/littleTommyTan/orange" target="_blank" rel="noopener">https://github.com/littleTommyTan/orange</a></p>
+<p><strong>Go-Micro 框架文档</strong></p>
+<p><a href="https://micro.mu/" target="_blank" rel="noopener">https://micro.mu/</a><br><a href="https://micro.mu/docs/index.html" target="_blank" rel="noopener">https://micro.mu/docs/index.html</a><br><img src="/images/orange/arc.png" alt="arc.png"><br><img src="/images/orange/basic.png" alt="basic.png"></p>
+<a id="more"></a>
+
+<h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><p>安装 protobuf、proto-gen-go、micro-cli</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 设置环境变量</span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on | <span class="built_in">export</span> GOPROXY=https://goproxy.io</span><br><span class="line">sudo apt install protobuf-compiler</span><br><span class="line">go get github.com/golang/protobuf/protoc-gen-go</span><br><span class="line">go get github.com/micro/protoc-gen-micro</span><br><span class="line">go get -u github.com/micro/micro</span><br></pre></td></tr></table></figure>
+
+<p>得如图 bin 文件：<br><img src="/images/orange/proto.jpg" alt="proto.png"></p>
+<h3 id="利用-micro-cli-创建微服务-micro-new-srv-web"><a href="#利用-micro-cli-创建微服务-micro-new-srv-web" class="headerlink" title="利用 micro-cli 创建微服务 micro new srv/web"></a>利用 micro-cli 创建微服务 micro new srv/web</h3><p>新建一个微服务 hi</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">micro new --<span class="built_in">type</span> <span class="string">"srv"</span> --fqdn orange.srv.hi github.com/littletommytan/orange/hi-srv --<span class="built_in">alias</span> hi</span><br><span class="line"><span class="built_in">cd</span> /home/littletommytan/go/src/github.com/littletommytan/orange/hi-srv</span><br><span class="line"><span class="comment">#protoc --proto_path=.:$GOPATH/src --go_out=. --micro_out=. proto/hi/hi.proto</span></span><br><span class="line">make proto</span><br><span class="line"><span class="comment"># export GO111MODULE=on | export GOPROXY=https://goproxy.io</span></span><br><span class="line"><span class="comment"># go mod init</span></span><br><span class="line">go mod vendor</span><br></pre></td></tr></table></figure>
+
+<p>同理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">micro new --<span class="built_in">type</span> <span class="string">"web"</span> --fqdn orange.web.hi github.com/littletommytan/orange/hi-web --<span class="built_in">alias</span> hi</span><br></pre></td></tr></table></figure>
+
+<p>然后修改一下 hi-web/handler/handler.go 中的 proto path 和 client.serviceName</p>
+<h3 id="启动服务-Go-run-main-go-each"><a href="#启动服务-Go-run-main-go-each" class="headerlink" title="启动服务 Go run main.go(each)"></a>启动服务 Go run main.go(each)</h3><p>此时一个微服务的 srv 和 web 均已启动，两个服务均注册至 mdns，访问成功。</p>
+<h3 id="配置读取"><a href="#配置读取" class="headerlink" title="配置读取"></a>配置读取</h3><p>Profiles 读取 Conf 中的 application-xxx.yml 配置，</p>
+<h3 id="User-Srv-及-User-Web"><a href="#User-Srv-及-User-Web" class="headerlink" title="User-Srv 及 User-Web"></a>User-Srv 及 User-Web</h3><h4 id="Api-Test"><a href="#Api-Test" class="headerlink" title="Api Test"></a>Api Test</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注册</span></span><br><span class="line">curl -X POST --url http://www.tommytan.io:8080/user/join   --header <span class="string">'Content-Type: application/json'</span>  --data <span class="string">'&#123;"username":"littletommytan","email":"tommytandm@foxmail.com","pwd":"12345"&#125;'</span></span><br><span class="line"><span class="comment"># 登录</span></span><br><span class="line">curl -X POST --url http://www.tommytan.io:8080/user/login   --header <span class="string">'Content-Type: application/x-www-form-urlencoded'</span>  --data <span class="string">'userName=littletommytan&amp;pwd=12345'</span></span><br><span class="line"><span class="comment"># ab并发</span></span><br><span class="line">ab -n 1000 -c 100 -T <span class="string">'application/json'</span> -p /Users/tommytan/Downloads/Untitled-1.json http://127.0.0.1:8080/user/join</span><br></pre></td></tr></table></figure>
+
+<h4 id="Error-handling-in-Gorm"><a href="#Error-handling-in-Gorm" class="headerlink" title="Error handling in Gorm"></a>Error handling in Gorm</h4><p>gorm 目前只有 record not found 的异常，且因为 micro.proto 的机制的问题（初步怀疑，无考究），rpc 调用返回 error 就不会携带 response 即 rsp 为空，故全项目不再使用对默认的 error 作异常处理，转为 errcode 机制，如下图 1 两个 rsp，其中 Error 类型为{code,message}，且 rpc 返回的 error 始终为 nil，故 user-web 对异常的处理形式如下图 2，看上去还蛮精致（暂未出现问题，先这样用着吧）。</p>
+<p><img src="/images/orange/error2.png" alt="e2.png"></p>
+<h4 id="Use-Gin-for-web"><a href="#Use-Gin-for-web" class="headerlink" title="Use Gin for web"></a>Use Gin for web</h4><p>Gin 的 webserver 集成还是足够强悍的，因为项目中会持续使用 gin 对外提供 http 服务。使用到一些 Gin 的 c.ShouldBind、c.Json 的东西，详情查看 commit detail</p>
+<h4 id="Copy-Proto"><a href="#Copy-Proto" class="headerlink" title="Copy Proto"></a>Copy Proto</h4><p>我不太清楚 proto 是否要拷贝一份到 user-web 目录下（如果不拷贝就需要引用到 user-srv 的 proto，至少我认为而且比较推荐还是解掉这个耦合比较好，就是开发的时候要注意一下修改了要替换，包括其他模块的 rpc 调用）</p>
+<h3 id="Post-Srv-及-Post-Web"><a href="#Post-Srv-及-Post-Web" class="headerlink" title="Post-Srv 及 Post-Web"></a>Post-Srv 及 Post-Web</h3><h4 id="Protobuf-自定义业务有效负载（区别于存储数据）-amp-Gorm-的聚合-Aggregation"><a href="#Protobuf-自定义业务有效负载（区别于存储数据）-amp-Gorm-的聚合-Aggregation" class="headerlink" title="Protobuf 自定义业务有效负载（区别于存储数据） &amp; Gorm 的聚合 Aggregation"></a>Protobuf 自定义业务有效负载（区别于存储数据） &amp; Gorm 的聚合 Aggregation</h4><p>业务中要求返回所有的 Tag，如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"golang"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="attr">"nodejs"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">"动漫"</span>: <span class="number">5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它是聚合数据，使用 sql 语句查询较便捷，查询操作如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sql =</span><br><span class="line"><span class="string">`select t."name",count(*) total from tags t group by t."name"`</span></span><br><span class="line"><span class="comment">// 查询出所有的 row</span></span><br><span class="line">rows, err := dao.GetDB().Raw(sql).Rows()</span><br><span class="line"><span class="comment">// defer close</span></span><br><span class="line"><span class="keyword">defer</span> rows.Close()</span><br><span class="line"><span class="keyword">for</span> rows.Next() &#123;</span><br><span class="line">  tc := &amp;TagCollection&#123;&#125;</span><br><span class="line">  ptc := &amp;postPb.TagCollection&#123;&#125;</span><br><span class="line">  _ = dao.GetDB().ScanRows(rows, tc)</span><br><span class="line"></span><br><span class="line">  b, _ := json.Marshal(tc)</span><br><span class="line">  err := json.Unmarshal(b, ptc)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>, &amp;postPb.Error&#123;Code: <span class="number">1</span>, Message: err.Error()&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  tags = <span class="built_in">append</span>(tags, ptc)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 然后将 tags:[]TagCollection 返回</span></span><br><span class="line"><span class="keyword">return</span> tags</span><br></pre></td></tr></table></figure>
+
+<p>handler 中也使用 TagCollection 作为 rpc 调用的 payload。</p>
+<h4 id="Gorm-的-One2Many-一对多关系的操作"><a href="#Gorm-的-One2Many-一对多关系的操作" class="headerlink" title="Gorm 的 One2Many 一对多关系的操作"></a>Gorm 的 One2Many 一对多关系的操作</h4><img src="/images/orange/1toMany.png" width="40%"/>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p := &amp;Post&#123;Title: title, Body: body&#125;</span><br><span class="line"><span class="comment">// Model.Association.Append</span></span><br><span class="line">dao.GetDB().Model(&amp;p).Association(<span class="string">"Tags"</span>).Append(tags).Error</span><br></pre></td></tr></table></figure>
+
+<p>通过 DB.Model.Association.Append，Post.ID 将会自动写入 Tag.PostID</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag"># 微服务</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/21/back-end/java/vim/" rel="prev" title="Vim使用手册（摘抄）">
+      <i class="fa fa-chevron-left"></i> Vim使用手册（摘抄）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/06/04/front-end/cocos/Creator%E9%A2%84%E5%88%B6%E4%BD%93%E5%85%8B%E9%9A%86/" rel="next" title="Cocos Creator 中简单克隆Scene/Prefab + Script的操作方式（不是拷贝）">
+      Cocos Creator 中简单克隆Scene/Prefab + Script的操作方式（不是拷贝） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实践地址"><span class="nav-number">1.</span> <span class="nav-text">实践地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速开始"><span class="nav-number">2.</span> <span class="nav-text">快速开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-micro-cli-创建微服务-micro-new-srv-web"><span class="nav-number">3.</span> <span class="nav-text">利用 micro-cli 创建微服务 micro new srv&#x2F;web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务-Go-run-main-go-each"><span class="nav-number">4.</span> <span class="nav-text">启动服务 Go run main.go(each)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置读取"><span class="nav-number">5.</span> <span class="nav-text">配置读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Srv-及-User-Web"><span class="nav-number">6.</span> <span class="nav-text">User-Srv 及 User-Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Api-Test"><span class="nav-number">6.1.</span> <span class="nav-text">Api Test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-handling-in-Gorm"><span class="nav-number">6.2.</span> <span class="nav-text">Error handling in Gorm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Use-Gin-for-web"><span class="nav-number">6.3.</span> <span class="nav-text">Use Gin for web</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Copy-Proto"><span class="nav-number">6.4.</span> <span class="nav-text">Copy Proto</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-Srv-及-Post-Web"><span class="nav-number">7.</span> <span class="nav-text">Post-Srv 及 Post-Web</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Protobuf-自定义业务有效负载（区别于存储数据）-amp-Gorm-的聚合-Aggregation"><span class="nav-number">7.1.</span> <span class="nav-text">Protobuf 自定义业务有效负载（区别于存储数据） &amp; Gorm 的聚合 Aggregation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gorm-的-One2Many-一对多关系的操作"><span class="nav-number">7.2.</span> <span class="nav-text">Gorm 的 One2Many 一对多关系的操作</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="littletommytan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">littletommytan</p>
+  <div class="site-description" itemprop="description">Advanced Front-end Engineer in a 越用越香的购物平台</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/littletommytan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;littletommytan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/982771996@qq.com" title="E-Mail → 982771996@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备18109713号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littletommytan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

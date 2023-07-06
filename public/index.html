@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://littletommytan.colorcat.online').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+<meta property="og:type" content="website">
+<meta property="og:title" content="水滴石穿">
+<meta property="og:url" content="https://littletommytan.colorcat.online/index.html">
+<meta property="og:site_name" content="水滴石穿">
+<meta property="og:description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="littletommytan">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://littletommytan.colorcat.online/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>水滴石穿</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">水滴石穿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">弱者才会相信运气，强者只相信因果</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2020/02/05/front-end/cocos/JSB%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/05/front-end/cocos/JSB%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">JSB ( Javascript Binding ) 使用笔记</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-05T00:00:00+08:00">2020-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>学习使用 Jsb 时产生的笔记。</p>
+<h4 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#if</span> <span class="selector-tag">defined</span>(COCOS2D_DEBUG) <span class="selector-tag">&amp;</span><span class="selector-tag">&amp;</span> (COCOS2D_DEBUG &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="comment">// Enable debugger here</span></span><br><span class="line">    <span class="selector-tag">jsb_enable_debugger</span>(<span class="string">"0.0.0.0"</span>, <span class="number">5086</span>);</span><br><span class="line"><span class="selector-id">#endif</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="se-Object-root-unroot-与-se-Object-incRef-decRef-的区别"><a href="#se-Object-root-unroot-与-se-Object-incRef-decRef-的区别" class="headerlink" title="se::Object::root/unroot 与 se::Object::incRef/decRef 的区别?"></a>se::Object::root/unroot 与 se::Object::incRef/decRef 的区别?</h4><p>root/unroot 用于控制 JS 对象是否受 GC 控制，root 表示不受 GC 控制，unroot 则相反，表示交由 GC 控制，对一个 se::Object 来说，root 和 unroot 可以被调用多次，se::Object 内部有_rootCount 变量用于表示 root 的次数。当 unroot 被调用，且_rootCount 为 0 时，se::Object 关联的 JS 对象将交由 GC 管理。还有一种情况，即如果 se::Object 的析构被触发了，如果_rootCount &gt; 0，则强制把 JS 对象交由 GC 控制。</p>
+<p>incRef/decRef 用于控制 se::Object 这个 cpp 对象的生命周期，前面章节已经提及，建议用户使用 se::HandleObject 来控制手动创建非绑定对象的方式控制 se::Object 的生命周期。因此，一般情况下，开发者不需要接触到 incRef/decRef。</p>
+<h4 id="对象生命周期的关联与解除关联"><a href="#对象生命周期的关联与解除关联" class="headerlink" title="对象生命周期的关联与解除关联"></a>对象生命周期的关联与解除关联</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">se::Object::attachObject/dettachObject</span><br></pre></td></tr></table></figure>
+
+<p>objA-&gt;attachObject(objB);类似于 JS 中执行 objA.<strong>nativeRefs[index] = objB，只有当 objA 被 GC 后，objB 才有可能被 GC objA-&gt;dettachObject(objB);类似于 JS 中执行 delete objA.</strong>nativeRefs[index];，这样 objB 的生命周期就不受 objA 控制了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2020/01/07/front-end/cocos/%E7%AC%AC%E4%B8%89%E6%A1%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/07/front-end/cocos/%E7%AC%AC%E4%B8%89%E6%A1%A5/" class="post-title-link" itemprop="url">Cocos 客户端开发中的三座桥（其三）SDKManager</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-07T00:00:00+08:00">2020-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="三、SdkManager"><a href="#三、SdkManager" class="headerlink" title="三、SdkManager"></a>三、SdkManager</h2><p>上面提到的两座桥是真桥，这第三座则是我自己膨胀出的结果，让一个底层之上的东西比肩 JNI 和 JSB。为什么那么嚣张，因为这个东西直接 PK 掉了 JSB。</p>
+<p>先让我们看看它的设计架构：<br><img src="/images/cocos/bridge/i3.png" width="30%"></p>
+<p>SdkManager 身处 C++层，向下通过 JNI 与 Java 层交互接受生命周期调用，向上通过 JSB 提供 Javascript 接口，同层管理各个 Sdk。</p>
+<ul>
+<li>它是一个 Lifecycle 分发器：当收到生命周期函数调用时，它会将其分发给其下管理的所有 Sdk。所以各个 Sdk 不需要前往各地注册生命周期调用函数，只需要继承并实现 Sdk 基类中对应的生命周期函数即可。</li>
+<li>它是一个 Sdk Method 路由器：通过 call 方法，SdkManager 可以找到对应的 Sdk 和 Method 调用它，并返回结果。</li>
+<li>它是一个中间件：通过 C++提供统一的接口，屏蔽了 iOS 与 Android 的接口差异。</li>
+<li>它很安全：它没有用到任何反射代码，不用为 iOS 多变的审核条款而提心吊胆。</li>
+</ul>
+<p>下面是 SdkMannger 在头文件中的定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SdkManager.h</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SdkManager</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> SKIP_BY_AUTO_BINDINGS</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addSdk</span><span class="params">(Sdk *sdk)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">removeSdk</span><span class="params">(Sdk *sdk)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Sdk *<span class="title">getSdk</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;name)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;clazz, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> Sdk::SdkCallback &amp;callback)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *appController;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *viewController;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *window;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidFinishLaunching</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationWillResignActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidBecomeActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidEnterBackground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationWillEnterForeground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationWillTerminate</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">applicationOpenURL</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSURL, <span class="keyword">void</span> *iosNSDictionary)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationdidRegisterForRemoteNotificationsWithDeviceToken</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSData)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveLocalNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUILocalNotification)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidRegisterUserNotificationSettings</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIUserNotificationSettings)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationHandleActionWithIdentifierForRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSString, <span class="keyword">void</span> *iosNSDictionary, <span class="keyword">void</span> *completionHandler)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">applicationDidFailToRegisterForRemoteNotificationsWithError</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSError)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">applicationSupportedInterfaceOrientationsForWindow</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIWindow)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) &amp;&amp; !defined(SKIP_BY_AUTO_BINDINGS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *appActivity;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> *glSurfaceView;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnCreate</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnPause</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnResume</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnDestroy</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnStart</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnRestart</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnStop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnNewIntent</span><span class="params">(<span class="keyword">void</span> *intent)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnActivityResult</span><span class="params">(<span class="keyword">int</span> request, <span class="keyword">int</span> result, <span class="keyword">void</span> *intent)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnBackPressed</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnSaveInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnRestoreInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">activityOnConfigurationChanged</span><span class="params">(<span class="keyword">void</span> *configuration)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，大部分的行数都被生命周期调用占据了，其他的包含 Sdk 的<code>add</code>, <code>remove</code>和<code>get</code>方法，最后是一个<code>call</code>方法 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::function&lt;<span class="keyword">void</span>(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;result)&gt; SdkCallback;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;clazz, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> Sdk::SdkCallback &amp;callback)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Sdk *sdk = getSdk(clazz);</span><br><span class="line">    <span class="keyword">if</span>(sdk) &#123;</span><br><span class="line">        sdk-&gt;call(method, params, callback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>call</code>方法的参数列表分别表示<code>类名</code>、<code>方法名</code>、<code>参数</code>、和<code>返回值</code>。</p>
+<ul>
+<li>类名：用于确定业务层需要使用哪一个 Sdk</li>
+<li>方法名：用于确定业务层需要使用哪一个方法</li>
+<li>参数：作为输入传参，它是字符串类型的，你可以用任何方式将你的参数转化为一串字符传递给 Sdk，然后在 Sdk 中将其再拆解开来。推荐的格式是 Json，当然你也可以使用自己的方式进行组合和拆解，SdkManager 对此并不关心。</li>
+<li>返回值：返回值使用 callback 的形式，并且 callback 的参数也是字符串类型（同<code>参数</code>使用方法）。之所以使用 callback 的方式，是因为这样可以同时解决同步与异步的问题。举个例子：登录时你可以在一系列用户操作之后拿到 token，再使用 callback 返回这个 token，而不用另外想办法将其传回 Js 层。</li>
+</ul>
+<p>Sdk 是所有业务 Sdk 的基类，它提供的<code>生命周期函数</code>都等待着业务 Sdk 的实现，<code>call</code>方法少了<code>类名</code>，同样等待业务 Sdk 的实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sdk</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> SdkManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    CC_SYNTHESIZE(<span class="built_in">std</span>::<span class="built_in">string</span>, _name, Name);</span><br><span class="line"></span><br><span class="line">    Sdk(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;name);</span><br><span class="line">    <span class="keyword">virtual</span> ~Sdk();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">typedef</span> <span class="built_in">std</span>::function&lt;<span class="keyword">void</span>(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;result)&gt; SdkCallback;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> SdkCallback &amp;callback)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidFinishLaunching</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillResignActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidBecomeActive</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidEnterBackground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillEnterForeground</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationWillTerminate</span><span class="params">(<span class="keyword">void</span> *iosUIApplication)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">applicationOpenURL</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSURL, <span class="keyword">void</span> *iosNSDictionary)</span> </span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationdidRegisterForRemoteNotificationsWithDeviceToken</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSData)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSDictionary)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidReceiveLocalNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUILocalNotification)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidRegisterUserNotificationSettings</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIUserNotificationSettings)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationHandleActionWithIdentifierForRemoteNotification</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSString, <span class="keyword">void</span> *iosNSDictionary, <span class="keyword">void</span> *completionHandler)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">applicationDidFailToRegisterForRemoteNotificationsWithError</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosNSError)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span>  <span class="title">applicationSupportedInterfaceOrientationsForWindow</span><span class="params">(<span class="keyword">void</span> *iosUIApplication, <span class="keyword">void</span> *iosUIWindow)</span> </span>&#123; <span class="keyword">return</span> <span class="comment">/*UIInterfaceOrientationMaskPortrait*/</span><span class="number">0x02</span>; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnCreate</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnPause</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnResume</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnDestroy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnStart</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnRestart</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnStop</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnNewIntent</span><span class="params">(<span class="keyword">void</span> *intent)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnActivityResult</span><span class="params">(<span class="keyword">int</span> request, <span class="keyword">int</span> result, <span class="keyword">void</span> *intent)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnBackPressed</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnSaveInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnRestoreInstanceState</span><span class="params">(<span class="keyword">void</span> *bundle)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">activityOnConfigurationChanged</span><span class="params">(<span class="keyword">void</span> *configuration)</span> </span>&#123;&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这是微信 Sdk 重写<code>call</code>的例子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WechatSdk::call</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;method, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;params, <span class="keyword">const</span> SdkCallback &amp;callback)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(method == <span class="string">"login"</span>) &#123;</span><br><span class="line">        login(callback);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(method == <span class="string">"loginWithQrcode"</span>) &#123;</span><br><span class="line">        loginWithQrcode(callback);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(method == <span class="string">"isWXAppInstalled"</span>) &#123;</span><br><span class="line">        <span class="keyword">bool</span> ret = isWXAppInstalled();</span><br><span class="line">        callback(ret ? <span class="string">"true"</span> : <span class="string">"false"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(method == <span class="string">"getWXAppInstallUrl"</span>) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> url = getWXAppInstallUrl();</span><br><span class="line">        callback(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了能在 Javascript 层有一个 <strong>漂亮</strong> 的 Sdk 接口，或许你还应该写一个 Js 的封装，把 SdkManager 的调用封装一下。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/12/15/front-end/cocos/%E7%AC%AC%E4%BA%8C%E6%A1%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/15/front-end/cocos/%E7%AC%AC%E4%BA%8C%E6%A1%A5/" class="post-title-link" itemprop="url">Cocos 客户端开发中的三座桥（其二） JSB</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-15T00:00:00+08:00">2019-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="JSB（Javascript-Binding）"><a href="#JSB（Javascript-Binding）" class="headerlink" title="JSB（Javascript Binding）"></a>JSB（Javascript Binding）</h3><p>JSB 是第二座桥，它与 JNI 类似，是提供 Native 层与 Javascript 层互相访问的一种方式，支持双向调用。</p>
+<p>上面一章节提到了普通的 Android 程序架构，下面的是 Cocos 程序的架构，它是这样的：</p>
+<img src="/images/cocos/bridge/i2.png" width="15%">
+
+<p>在 Java 之上又通过 JNI 回到了 Cocos 的 Native 层，此层是通过动态链接库.so 加载的。然后再经过一个 JSB 的桥与 Javascript 进行交互。游戏则是使用 Javascript 编写的。</p>
+<p>JSB 有好几种，有 Mozilla 家的 SpiderMonkey 和 Google 家的 V8，最新的 iOS 里则用到了 Apple 自家的 JSB 接口。使用哪种 JSB 接口主要取决于使用哪种 Javascript 虚拟机。</p>
+<p>排除掉各种 JS 虚拟机的不同，Cocos 为我们提供了统一的接口，让我们可以使用。它能实现 Javascript 中的一个方法与一个 C 方法进行绑定。在 Javascript 中调用该方法时，则在 C++中被绑定的方法会被调用。</p>
+<h4 id="1、Javascript-调用-C"><a href="#1、Javascript-调用-C" class="headerlink" title="1、Javascript 调用 C++"></a>1、Javascript 调用 C++</h4><p>如果我们在 C++中看见这样的函数名 js*<Namespace>*<Class>_<Method>(se::State&amp; s)那么它就是为 JSB 而写的了。它不像 JNI 一样有严格的命名规范，可以时任意函数名，但为了可以方便快捷的定位方法，所以人为的定了这么一个命名规范。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">static <span class="built_in">bool</span> js<span class="constructor">_cocos2dx_FileUtils_addSearchPath(<span class="params">se</span>::State&amp; <span class="params">s</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    cocos2d::FileUtils* cobj = (cocos2d::FileUtils*)s.native<span class="constructor">ThisObject()</span>;</span><br><span class="line">    <span class="constructor">SE_PRECONDITION2(<span class="params">cobj</span>, <span class="params">false</span>, <span class="string">"js_cocos2dx_FileUtils_addSearchPath : Invalid Native Object"</span>)</span>;</span><br><span class="line">    const auto&amp; args = s.args<span class="literal">()</span>;</span><br><span class="line">    size_t argc = args.size<span class="literal">()</span>;</span><br><span class="line">    CC_UNUSED <span class="built_in">bool</span> ok = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (argc<span class="operator"> == </span><span class="number">1</span>) &#123;</span><br><span class="line">        std::<span class="built_in">string</span> arg0;</span><br><span class="line">        ok &amp;= seval<span class="constructor">_to_std_string(<span class="params">args</span>[0], &amp;<span class="params">arg0</span>)</span>;</span><br><span class="line">        <span class="constructor">SE_PRECONDITION2(<span class="params">ok</span>, <span class="params">false</span>, <span class="string">"js_cocos2dx_FileUtils_addSearchPath : Error processing arguments"</span>)</span>;</span><br><span class="line">        cobj-&gt;add<span class="constructor">SearchPath(<span class="params">arg0</span>)</span>;</span><br><span class="line">        return <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (argc<span class="operator"> == </span><span class="number">2</span>) &#123;</span><br><span class="line">        std::<span class="built_in">string</span> arg0;</span><br><span class="line">        <span class="built_in">bool</span> arg1;</span><br><span class="line">        ok &amp;= seval<span class="constructor">_to_std_string(<span class="params">args</span>[0], &amp;<span class="params">arg0</span>)</span>;</span><br><span class="line">        ok &amp;= seval<span class="constructor">_to_boolean(<span class="params">args</span>[1], &amp;<span class="params">arg1</span>)</span>;</span><br><span class="line">        <span class="constructor">SE_PRECONDITION2(<span class="params">ok</span>, <span class="params">false</span>, <span class="string">"js_cocos2dx_FileUtils_addSearchPath : Error processing arguments"</span>)</span>;</span><br><span class="line">        cobj-&gt;add<span class="constructor">SearchPath(<span class="params">arg0</span>, <span class="params">arg1</span>)</span>;</span><br><span class="line">        return <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="constructor">SE_REPORT_ERROR(<span class="string">"wrong number of arguments: %d, was expecting %d"</span>, (<span class="params">int</span>)</span>argc, <span class="number">2</span>);</span><br><span class="line">    return <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="constructor">SE_BIND_FUNC(<span class="params">js_cocos2dx_FileUtils_addSearchPath</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>这时一段典型的 JSB 代码，通过函数名我们就知道了这个 JSB 绑定的是 FileUtils 的 addSearchPath 方法。</p>
+<p>addSearchPath 是个重载函数，一个有 1 参数，一个有 2 参数。我们可以看到 JSB 中是以 逻辑 来区分函数重载的。</p>
+<p>乍一看，JSB 也辣么变态，1 行代码变成 27 行。如果我只有一个函数绑定 JSB 还好，如果我有成百上千和函数要绑定，岂不是这辈子都要搭里面了？Noooooo…</p>
+<p>好在 Cocos 又提供的方案，就是自动生成 JSB 代码。只需要简(bìng)单(bù)配置一个配置文件，然后让生成脚本跑一下，那成百上千的 JSB 绑定函数就变出来了。</p>
+<p>在我们的项目中，我将这个工具放在了 tools/bindings-generator 下。配置文件是 test/test.ini，生成脚本是 test/test.py。</p>
+<p>不细讲了，自己看吧。</p>
+<h4 id="2、C-调用-Javascript"><a href="#2、C-调用-Javascript" class="headerlink" title="2、C++ 调用 Javascript"></a>2、C++ 调用 Javascript</h4><p>不推荐使用 C++调用 Javascript，因为需要明确地写明方法名来找到该 JS 方法并调用。而 C++是编译语言不支持热更，Javascript 则是脚本语言可以作为资源进行热更新。这很容易造成 Js 中的方法名修改后导致调用失效。</p>
+<p>解决方案就是将 Js 方法作为参数传入 C++中，在 C++中调用该注册方法。上面提到的 bindings-generator 支持生成将函数作为参数的代码，好好利用吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/11/03/front-end/cocos/%E7%AC%AC%E4%B8%80%E6%A1%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/03/front-end/cocos/%E7%AC%AC%E4%B8%80%E6%A1%A5/" class="post-title-link" itemprop="url">Cocos 客户端开发中的三座桥（其一） JNI</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-03T00:00:00+08:00">2019-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Cocos Creator ts 项目构建后在 Andorid 上的开发，我们会用到三种语言：Java、C++和 Javascript。往往一个简单的功能就需要同时用到这几种语言，例如微信的登录，需要在 Javascript 响应按钮的点击操作，在 Java 中调用 SDK 的 login 接口，最后再将 SDK 的结果返回给 Javascript 层用于进行后续逻辑。</p>
+<p>在 Java、C++、Javascript 各自的语言上进行开发我们这里不做详解。基本上有编程经验的人都能很快上手。</p>
+<h3 id="一、JNI（Java-native-interface）"><a href="#一、JNI（Java-native-interface）" class="headerlink" title="一、JNI（Java native interface）"></a>一、JNI（Java native interface）</h3><p>JNI 是第一座桥，用于在 Java 和 C++间进行交互。</p>
+<p>Java jni 本意是 Java native interface（Java 本地接口），是为了方便 Java 调用 c、c++等本地代码所封装的一层接口。</p>
+<p>Java 的跨平台特性导致其本地交互的能力不够强大，一些和操作系统相关的特性 Java 无法完成，于是 Java 提供了 JNI 专门用于和本地代码交互，这样就增强了 Java 语言的本地交互能力。</p>
+<p>通过 Java jni，用户可以调用用 c、c++所编写的 native code。Native code 也可以调用 Java code。</p>
+<p>一个普通的 Android 程序是这样的架构</p>
+<img src="/images/cocos/bridge/i1.png" width="15%">
+
+<p>通过 JNI 在 Native（C++）和 Java 间进行交互，Android App 使用 Java 进行开发。</p>
+<h4 id="1、Java-调用-C"><a href="#1、Java-调用-C" class="headerlink" title="1、Java 调用 C++"></a>1、Java 调用 C++</h4><p>当 Java 要使用 C++的方法时，方法的实现是在 C++中编写的，首先需要在 Java 中使用 native 关键字对该方法进行声明。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Baz.java</span></span><br><span class="line"><span class="keyword">package</span> com.foo.bar</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Baz</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="keyword">native</span> <span class="title">qux</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="keyword">native</span> <span class="title">quux</span><span class="params">(<span class="keyword">int</span> param1, <span class="keyword">boolean</span> param2, String param3)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在 C++中仅仅需要按照规定的函数命名方式进行函数命名即可。</p>
+<pre><code>注意: C++编译器可能会对普通的c函数进行函数名变形，所以别忘了加上extern &quot;C&quot;。</code></pre><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BazJni.cpp</span></span><br><span class="line">#<span class="keyword">include</span> &lt;jni.h&gt;</span><br><span class="line">extern <span class="string">"C"</span> &#123;</span><br><span class="line">  JNIEXPORT void JNICALL <span class="constructor">Java_com_foo_bar_Baz_qux(JNIEnv <span class="operator">*</span><span class="params">env</span>, <span class="params">jobject</span> <span class="params">thiz</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// balabala</span></span><br><span class="line">  &#125;</span><br><span class="line">  JNIEXPORT jint JNICALL <span class="constructor">Java_com_foo_bar_Baz_quux(JNIEnv <span class="operator">*</span><span class="params">env</span>, <span class="params">jobject</span> <span class="params">thiz</span>, <span class="params">jint</span> <span class="params">param1</span>, <span class="params">jboolean</span> <span class="params">param2</span>, <span class="params">jobject</span> <span class="params">param3</span>)</span> &#123;</span><br><span class="line">    jobject <span class="built_in">ref</span> = env-&gt;<span class="constructor">NewLocalRef(<span class="params">param3</span>)</span>;</span><br><span class="line">    <span class="comment">// balabala</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，JNI 会自动将两者关联并进行调用，无需我们做更多处理。</p>
+<p>需要注意的是，虽然 C++和 Java 之间可以交互，对于传入 C++的 Java 对象进行简单赋值是不会在 Java 内对其产生引用效果的，所以需要显式地创建 Java 引用来防止其在 Java 内被回收掉。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jobject <span class="built_in">ref</span> = env-&gt;<span class="constructor">NewGlobalRef(<span class="params">param</span>)</span> <span class="comment">// 创建全局引用</span></span><br><span class="line">jobject <span class="built_in">ref</span> = env-&gt;<span class="constructor">NewLocalRef(<span class="params">param</span>)</span> <span class="comment">// 创建局部引用</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2、C-调用-Java"><a href="#2、C-调用-Java" class="headerlink" title="2、C++调用 Java"></a>2、C++调用 Java</h4><p>C++调用 Java 相对麻烦点，需要采用一系列 C++函数来 找到 并 执行 它。可想而知，一个简简单单的 Java 语句到了 C++层来调用，要花掉好几行。</p>
+<p>例如在 Java 中有这么一个方法需要在 C++中被调用</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Baz.java</span></span><br><span class="line">package com.foo.bar</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Baz</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">qux</span><span class="params">(<span class="keyword">int</span> param1, <span class="keyword">boolean</span> param2, <span class="keyword">String</span> param3)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C++中是这么写的</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BazJni.cpp</span></span><br><span class="line">#<span class="keyword">include</span> &lt;jni.h&gt;</span><br><span class="line"><span class="comment">// Baz.qux(123, true, "HelloWorld");</span></span><br><span class="line">env = get<span class="constructor">Env()</span>;</span><br><span class="line">jclass classID = <span class="constructor">_getClassID(<span class="string">"com/foo/bar/Baz"</span>)</span>;</span><br><span class="line">jmethodID methodID = env-&gt;<span class="constructor">GetStaticMethodID(<span class="params">classID</span>, <span class="string">"qux"</span>, <span class="string">"(IZLjava/lang/String;)I"</span>)</span>;</span><br><span class="line">jobject jtext = env-&gt;<span class="constructor">NewStringUTF(<span class="string">"HelloWorld"</span>)</span>;</span><br><span class="line"><span class="built_in">int</span> ret = env-&gt;<span class="constructor">CallStaticIntMethod(<span class="params">classID</span>, <span class="params">methodID</span>, 123, <span class="params">true</span>, <span class="params">jtext</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里 getEnv 和_getClassID 里面是如何实现我就不展开了，那又是一大段故事了。</p>
+<p>简单的一行 Baz.qux(123, true, “HelloWorld”);竟然花了这么多行！！！而且其中还混入了奇怪的东西，”(IZLjava/lang/String;)I”又是什么鬼啊？？？</p>
+<p>这又要引入新的概念了，就是数据类型签名。我们知道像 Java 这种高级语言是有 重载 功能的，即允许在同一范围中声明几个功能类似的同名函数，但是这些同名函数的形式参数必须不同。那么问题就来了，我想调用 qux 这个方法，但它如果有好几个重载，JNI 如何知道该调用哪一个呢？程序又不会意念感应，当然不知道你想使用哪一个。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qux</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qux</span><span class="params">(<span class="keyword">int</span> param1)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qux</span><span class="params">(<span class="keyword">int</span> param1, <span class="keyword">boolean</span> param2)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qux</span><span class="params">(<span class="keyword">int</span> param1, <span class="keyword">boolean</span> param2, <span class="keyword">String</span> param3)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>数据类型签名就是解决这个问题的，它需要程序员明确地注册参数列表样式，让 JNI 知道被调用的是哪一个方法。</p>
+<p>数据签名如下表：</p>
+<table>
+<thead>
+<tr>
+<th>本地类型</th>
+<th>JNI 类型</th>
+<th>Java 类型</th>
+<th>类型签名（signature）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>void</td>
+<td>V</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>jboolean</td>
+<td>boolean Z</td>
+<td>无符号 8 位</td>
+<td>-</td>
+</tr>
+<tr>
+<td>signed</td>
+<td>char</td>
+<td>jbyte</td>
+<td>byte</td>
+<td>B</td>
+</tr>
+<tr>
+<td>short</td>
+<td>jshort</td>
+<td>short</td>
+<td>C</td>
+<td>无符号 16 位</td>
+</tr>
+<tr>
+<td>int</td>
+<td>jint</td>
+<td>int</td>
+<td>I</td>
+<td>有符号 32 位</td>
+</tr>
+<tr>
+<td>long</td>
+<td>long</td>
+<td>jlong</td>
+<td>long</td>
+<td>J</td>
+</tr>
+<tr>
+<td>float</td>
+<td>jfloat</td>
+<td>float</td>
+<td>F</td>
+<td>32 位浮点</td>
+</tr>
+<tr>
+<td>double</td>
+<td>jdouble</td>
+<td>double</td>
+<td>D</td>
+<td>64 位浮点</td>
+</tr>
+<tr>
+<td><type>[]</td>
+<td></td>
+<td></td>
+<td>[ <type> 数组 ]</td>
+<td>数组</td>
+</tr>
+</tbody></table>
+<p>使用方式是直接拼接成一个字符串</p>
+<p>如上面的(int, boolean, String)就是变成了”(IZLjava/lang/String;)”，其中 String 的签名是 Ljava/lang/String;，因为它的 package 是 package java.lang。同样，返回值也是需要签名的。放在括号的后面，例如”(IZLjava/lang/String;)I”表示返回值是 int 类型。</p>
+<p>讲了辣么多，是不是觉得 C++ 调用 Java 简直就是 地狱模式。</p>
+<p>所幸 Cocos 的 JniHelper 类为我们提供了简单的方法，也得益于 C++的模版功能，我们有了这么一系列简单的接口。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">template &lt;typename... Ts&gt;</span><br><span class="line">void call<span class="constructor">StaticVoidMethod(<span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">className</span>, <span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">methodName</span>, Ts<span class="operator">...</span> <span class="params">xs</span>)</span>;</span><br><span class="line"><span class="built_in">bool</span> call<span class="constructor">StaticBooleanMethod(<span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">className</span>, <span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">methodName</span>, Ts<span class="operator">...</span> <span class="params">xs</span>)</span>;</span><br><span class="line"><span class="built_in">int</span> call<span class="constructor">StaticIntMethod(<span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">className</span>, <span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">methodName</span>,  Ts<span class="operator">...</span> <span class="params">xs</span>)</span>;</span><br><span class="line"><span class="built_in">float</span> call<span class="constructor">StaticFloatMethod(<span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">className</span>, <span class="params">const</span> <span class="params">std</span>::<span class="params">string</span>&amp; <span class="params">methodName</span>, Ts<span class="operator">...</span> <span class="params">xs</span>)</span>;</span><br><span class="line">... etc.</span><br></pre></td></tr></table></figure>
+
+<p>只需要在后面直接列出参数即可，如此神奇。如下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ret = <span class="string">JniHelper:</span>:callStaticIntMethod(<span class="string">"com/foo/bar/Baz"</span>, <span class="string">"qux"</span>, <span class="number">123</span>, <span class="literal">true</span>, <span class="string">"HelloWorld"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>具体实现，可以移步”JniHelper.h”中了解。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/09/11/front-end/cocos/Creator%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/11/front-end/cocos/Creator%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Cocos Creator 生成项目的启动工作流程（抄录）</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-11T00:00:00+08:00">2019-09-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Javascript-Binding"><a href="#Javascript-Binding" class="headerlink" title="Javascript Binding"></a>Javascript Binding</h3><p>Cocos Creator 使用的是 Cocos2d-X 引擎的 js 绑定，开发语言也是 js 了。这里顺带提一下，关于用 Lua 还是 js 绑定的问题。主要的方式如下：引擎开启一个 脚本运行（ Lua 是 Lua State，JavaScript 用的是 V8 等等），然后把 C++ 写的代码，注入到这个引擎内。这样，引擎内就可以以调用注入函数的形式，调用底层代码。</p>
+<p>而对于我们的用户而言，所看到的据，我们所编写的 Js/Lua 脚本，居然能够产生就跟原生代码一样的效果。</p>
+<h3 id="安卓的启动"><a href="#安卓的启动" class="headerlink" title="安卓的启动"></a>安卓的启动</h3><p>jsb-default会把CocosCreator中的Cocos2dx引擎C++代码复制在build中，方便做自定义的引擎修改。</p>
+<p>jsb-link不会复制C++代码出来，所以使用默认引擎</p>
+<p>我们用 Cocos Creator 打包好的安卓项目内，与通常的安卓项目没有什么太大的差异，不过是利用了一些 Jni 技术来加载底层代码。但我们现在只关注启动的流程。</p>
+<p>启动的 Activity 是一个叫做 AppActivity 的东西，在其 onCreate() 函数内进行了 SDK 的初始化：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    <span class="comment">// Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508</span></span><br><span class="line">    <span class="keyword">if</span> (!isTaskRoot()) &#123;</span><br><span class="line">        <span class="comment">// Android launched another instance of the root activity into an existing task</span></span><br><span class="line">        <span class="comment">//  so just quietly finish and go away, dropping the user back into the activity</span></span><br><span class="line">        <span class="comment">//  at the top of the stack (ie: the last state of this task)</span></span><br><span class="line">        <span class="comment">// Don't need to finish it again since it's finished in super.onCreate .</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// DO OTHER INITIALIZATION BELOW</span></span><br><span class="line">    </span><br><span class="line">    SDKWrapper.getInstance().<span class="keyword">init</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 我们的项目中使用 SDKManager</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终都会执行到引擎的 C++ 类： AppDelegate.cpp。</p>
+<p>在其中的一个方法内就能看到，加载初始化的代码：</p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> AppDelegate::applicationDidFinishLaunching()</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS &amp;&amp; PACKAGE_AS</span></span><br><span class="line">    SDKManager::getInstance()-&gt;loadAllPlugins();</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">    <span class="comment">// initialize director</span></span><br><span class="line">    auto director = Director::getInstance();</span><br><span class="line">    auto glview = director-&gt;getOpenGLView();</span><br><span class="line">    <span class="keyword">if</span>(!glview) &#123;</span><br><span class="line"><span class="comment">#if(CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)</span></span><br><span class="line">        glview = GLViewImpl::create(<span class="string">"SCMJ"</span>);</span><br><span class="line"><span class="comment">#else</span></span><br><span class="line">        glview = GLViewImpl::createWithRect(<span class="string">"SCMJ"</span>, cocos2d::Rect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">900</span>,<span class="number">640</span>));</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">        director-&gt;setOpenGLView(glview);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// set FPS. the default value is 1.0/60 if you don't call this</span></span><br><span class="line">    director-&gt;setAnimationInterval(<span class="number">1.0</span> / <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    ScriptingCore* sc = ScriptingCore::getInstance();</span><br><span class="line">    ScriptEngineManager::getInstance()-&gt;setScriptEngine(sc);</span><br><span class="line"></span><br><span class="line">    se::ScriptEngine* se = se::ScriptEngine::getInstance();</span><br><span class="line"></span><br><span class="line">    jsb_set_xxtea_key(<span class="string">""</span>);</span><br><span class="line">    jsb_init_file_operation_delegate();</span><br><span class="line"></span><br><span class="line"><span class="comment">#if defined(COCOS2D_DEBUG) &amp;&amp; (COCOS2D_DEBUG &gt; 0)</span></span><br><span class="line">    <span class="comment">// Enable debugger here</span></span><br><span class="line">    jsb_enable_debugger(<span class="string">"0.0.0.0"</span>, <span class="number">5086</span>);</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line"></span><br><span class="line">    se-&gt;setExceptionCallback([](<span class="keyword">const</span> <span class="keyword">char</span>* location, <span class="keyword">const</span> <span class="keyword">char</span>* message, <span class="keyword">const</span> <span class="keyword">char</span>* stack)&#123;</span><br><span class="line">        <span class="comment">// Send exception information to server like Tencent Bugly.</span></span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    jsb_register_all_modules();</span><br><span class="line"></span><br><span class="line"><span class="comment">#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) &amp;&amp; PACKAGE_AS</span></span><br><span class="line">    se-&gt;addRegisterCallback(register_all_anysdk_framework);</span><br><span class="line">    se-&gt;addRegisterCallback(register_all_anysdk_manual);</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line"></span><br><span class="line">    se-&gt;start();</span><br><span class="line"></span><br><span class="line">    jsb_run_script(<span class="string">"main.js"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单的解释：</p>
+<p>初始化 openGL 视图。<br>初始化脚本核心引擎。<br>注入所有模块。<br>启动脚本引擎<br>执行脚本 main.js。<br>这样就将控制权转交给了脚本引擎中的 main.js。</p>
+<h4 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h4><p>当加载完我们项目相关的 js 后，就会把这些参数，传递给给 引擎的 game 对象 run 方法。启动游戏了</p>
+<h4 id="jsb-register-all-modules-将相关的底层接口注册到js引擎"><a href="#jsb-register-all-modules-将相关的底层接口注册到js引擎" class="headerlink" title="jsb_register_all_modules 将相关的底层接口注册到js引擎"></a>jsb_register_all_modules 将相关的底层接口注册到js引擎</h4><p>在这个函数中，首先获取一个 ScriptEngine(se) 的实例，然后就会进行一系列的加载操作。这样我们就有了 JavaScript 调用 C++ (Cocos Native 以及 SDKManager) 和 Java 的能力(因register_javascript_java_bridge)了，js 绑定完成。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/09/08/back-end/java/blance-descend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/08/back-end/java/blance-descend/" class="post-title-link" itemprop="url">高并发下怎么做余额扣减？（摘抄）</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-08T00:00:00+08:00">2019-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>余额操作在大多数系统都是不可缺少和不允许出现问题的 如何修改余额 , 这个问题可能在实际项目中 没那么简单;<br>如何修改余额<br>假设一个用户数据 :<br>id⇒12 | user_name⇒ 放放 | fee⇒ 30 | updated_at ⇒ 2019-09-06 15:51:33<br>修改余额</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//消费金额</span></span><br><span class="line">$spend = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户余额</span></span><br><span class="line">$user = <span class="keyword">select</span> id,fee from <span class="string">`users`</span> where id = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算金额</span></span><br><span class="line">$newFee = $user[<span class="string">'fee'</span>]-$spend;</span><br><span class="line"></span><br><span class="line"><span class="comment">//.. 这里检查余额是否足够</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新余额</span></span><br><span class="line">update <span class="string">`users`</span> set fee = $newFee  where id = <span class="number">12</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>按照正常逻辑来说上面更新余额是没问题的<br>但是如果发生并发 当 A 跟 B 同时发起请求时<br>请求 A 查询出余额为 30<br>请求 B 查询出余额为 30<br>请求 B 更新余额为 20<br>请求 A 更新余额为 20<br>最终用户余额为 20<br>也就是说 用户余额为 30 两个请求都消费了 10 元 即 30 - 10 -10 =10 但是当发生并发请求时 余额最终为 20 这里的金额是错误的<br>在请求 B 修改了 余额之后 请求 A 的查询出来的余额已经不是正确的了 导致了 余额更新错误<br>常见的解决办法 添加数据库的行锁<br>当请求 A 执行时 先加入锁 阻塞 请求 B 直到 请求 A 完成之后 请求 B 才继续执行<br>当然使用事务 并不是那么明智</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开始事务</span></span><br><span class="line">begin;</span><br><span class="line"></span><br><span class="line"><span class="comment">//消费金额</span></span><br><span class="line">$spend = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户余额</span></span><br><span class="line">$user = <span class="keyword">select</span> id,fee from <span class="string">`users`</span> where id = <span class="number">12</span> <span class="keyword">for</span> update;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算金额</span></span><br><span class="line">$newFee = $user[<span class="string">'fee'</span>]-$spend;</span><br><span class="line"></span><br><span class="line"><span class="comment">//.. 这里检查余额是否足够</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新余额</span></span><br><span class="line">update <span class="string">`users`</span> set fee = $newFee where id = <span class="number">12</span>  ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//确认成功之后  提交事务</span></span><br><span class="line">commit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CAS  业务层面乐观锁</span><br><span class="line">什么是  CAS</span><br><span class="line">在更新的时候使用初始值(即查询出来的当前余额)作为条件 compare 限制只有当初始值没有改变时才允许更新成功 set</span><br><span class="line">Compare And Set（CAS）</span><br><span class="line">使用该方式  修改  更新语句</span><br><span class="line"></span><br><span class="line"><span class="comment">//消金额</span></span><br><span class="line">$spend = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户余额</span></span><br><span class="line">$user = <span class="keyword">select</span> id,fee from <span class="string">`users`</span> where id = <span class="number">12</span>;</span><br><span class="line">$oldFee = $user[<span class="string">'fee'</span>];</span><br><span class="line"><span class="comment">//计算金额</span></span><br><span class="line">$newFee = $user[<span class="string">'fee'</span>]-$spend;</span><br><span class="line"></span><br><span class="line"><span class="comment">//.. 这里检查余额是否足够</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新余额</span></span><br><span class="line">update <span class="string">`users`</span> set fee = $newFee   where id = <span class="number">12</span> and fee = $oldFee ;</span><br></pre></td></tr></table></figure>
+
+<p>这里如果发生同时修改产生并发 将只有一边修改成功 这时候如果产生失败 可以对他进行重试等操作<br>为什么不使用 减等于 的 sql 语句<br>例如 :<br>update users set fee = fee - $spend where id = 12 ;<br>这里要再加上余额的判断避免出现  负数金额<br>update users set fee = fee - $spend where id = 12 and fee &gt;= $spend ;<br>稍微改一下这里的更新 语句 也能完成正确的更新 就算是并发也都将正常<br>但是这样做将产生一个问题 不幂等<br>什么是不幂等 ?<br>在相同的条件下 , 执行同一请求,得到的结果相同才符合幂等性</p>
+<p>也即是说<br>fee = fee - $spend  不幂等<br>fee = $newFee 幂等</p>
+<p>不幂等的情况下 如果发生重复执行的情况将产生重复扣款<br>事实上实际业务如何正确的扣款 根据业务的实际情况 可能需要注意更多细节 , 越大的业务量,需要面对更多的问题处理更多的细节. 以上的方案也仅仅是最基础的处理 实际情况需要更多的耐心和思考 共勉之 ~<br>以上.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/08/11/web/browser/dom-event/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/11/web/browser/dom-event/" class="post-title-link" itemprop="url">DOM 事件模型</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-11T00:00:00+08:00">2019-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>DOM 全称是 Document Object Model，即文档对象模型。DOM 是 W3C 的标准，定义了访问 HTML 和 XML 文档的标准。</p>
+<blockquote>
+<p>“文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”</p>
+</blockquote>
+<h3 id="DOM-事件"><a href="#DOM-事件" class="headerlink" title="DOM 事件"></a>DOM 事件</h3><p>DOM 使 Javascript 有能力对 HTML 上的事件做出反应。这些事件包括鼠标键盘的点击事件、移动事件以及页面中内容的变化等。HTML 元素事件是浏览器内在自动产生的,当有事件发生时 html 元素会向外界(这里主要指元素事件的订阅者)发出各种事件,如 click,onmouseover,onmouseout 等等。</p>
+<h3 id="DOM-事件流及事件模型"><a href="#DOM-事件流及事件模型" class="headerlink" title="DOM 事件流及事件模型"></a>DOM 事件流及事件模型</h3><p>DOM 的结构是一个树形，每当 HTML 元素产生事件时，该事件就会在树的根节点和元素节点之间传播，所有经过的节点都会收到该事件。</p>
+<p>DOM 事件模型分为两类：一类是 IE 所使用的冒泡型事件（Bubbling）；另一类是 DOM 标准定义的冒泡型与捕获型（Capture）的事件。除 IE 外的其他浏览器都支持标准的 DOM 事件处理模型。</p>
+<img src="/images/web/dom.png" width="20%">
+
+<ul>
+<li><h4 id="冒泡型事件处理模型（Bubbling）"><a href="#冒泡型事件处理模型（Bubbling）" class="headerlink" title="冒泡型事件处理模型（Bubbling）"></a>冒泡型事件处理模型（Bubbling）</h4></li>
+</ul>
+<p>如上图所示，冒泡型事件处理模型在事件发生时，首先在最精确的元素上触发，然后向上传播，直到根节点。反映到 DOM 树上就是事件从叶子节点传播到根节点。</p>
+<ul>
+<li><h4 id="捕获型事件处理模型（Captrue）"><a href="#捕获型事件处理模型（Captrue）" class="headerlink" title="捕获型事件处理模型（Captrue）"></a>捕获型事件处理模型（Captrue）</h4></li>
+</ul>
+<p>相反地，捕获型在事件发生时首先在最顶级的元素上触发，传播到最低级的元素上。在 DOM 树上的表现就是由根节点传播到叶子节点。</p>
+<h3 id="标准的-DOM-事件处理模型"><a href="#标准的-DOM-事件处理模型" class="headerlink" title="标准的 DOM 事件处理模型"></a>标准的 DOM 事件处理模型</h3><p>标准的事件处理模型分为三个阶段：</p>
+<ul>
+<li>父元素中所有的捕捉型事件（如果有）自上而下地执行</li>
+<li>目标元素的冒泡型事件（如果有）</li>
+<li>父元素中所有的冒泡型事件（如果有）自下而上地执行</li>
+</ul>
+<h3 id="注册事件监听"><a href="#注册事件监听" class="headerlink" title="注册事件监听"></a>注册事件监听</h3><h4 id="1、传统方式的事件模型即直接在-DOM-元素上绑定事件处理器，例如—"><a href="#1、传统方式的事件模型即直接在-DOM-元素上绑定事件处理器，例如—" class="headerlink" title="1、传统方式的事件模型即直接在 DOM 元素上绑定事件处理器，例如—"></a>1、传统方式的事件模型即直接在 DOM 元素上绑定事件处理器，例如—</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;…&#125;</span><br><span class="line">obj.onmouseover=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;…&#125;</span><br><span class="line">obj.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;…&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先这种方式是无论在 IE 还是 Firefox 等其他浏览器上都可以成功运行的通用方式。这便是它最大的优势了，而且在 Event 处理函数内部的 this 变量无一例外的都只想被绑定的 DOM 元素，这使得 Js 程序员可以大大利用 this 关键字做很多事情。</p>
+<p>至于它的缺点也很明显，就是传统方式只支持 Bubbling，而不支持 Capturing，并且一次只能绑定一个事件处理器在 DOM 元素上，无法实现多 Handler 绑定。最后就是 function 参数中的 event 参数只对非 IE 浏览器有效果(因为 IE 浏览器有特制的 window.event)。</p>
+<h4 id="2、W3C-Firefox-e-g-Event-Module"><a href="#2、W3C-Firefox-e-g-Event-Module" class="headerlink" title="2、W3C (Firefox.e.g) Event Module"></a>2、W3C (Firefox.e.g) Event Module</h4><p>Firefox 等浏览器很坚决的遵循 W3C 标准来制定浏览器事件模型，使用 addEventListener 和 removeEventListener 两个函数，看几个例子—</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(‘load’,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;…&#125;,<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(‘keypress’,<span class="function"><span class="keyword">function</span></span>&#123;…&#125;,<span class="literal">false</span>);</span><br><span class="line">obj.addEventListener(‘mouseover’,MV,<span class="literal">true</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MV</span>(<span class="params"></span>)</span>&#123;…&#125;</span><br></pre></td></tr></table></figure>
+
+<p>addEventListener 带有三个参数，第一个参数是事件类型，就是我们熟知的那些事件名字去掉前面的’on’，第二个参数是处理函数，可以直接给函数字面量或者函数名，第三个参数是 boolean 值，表示事件是否支持 Capturing。</p>
+<p>W3C 的事件模型优点是 Bubbling 和 Capturing 都支持，并且可以在一个 DOM 元素上绑定多个事件处理器，各自并不会冲突。并且在处理函数内部，this 关键字仍然可以使用只想被绑定的 DOM 元素。另外 function 参数列表的第一个位置(不管是否显示调用)，都永远是 event 对象的引用。</p>
+<p>至于它的缺点，很不幸的就只有在市场份额最大的 IE 浏览器下不可使用这一点。</p>
+<h4 id="3、IE-Event-Module"><a href="#3、IE-Event-Module" class="headerlink" title="3、IE Event Module"></a>3、IE Event Module</h4><p>IE 自己的事件模型跟 W3C 的类似，但主要是通过 attachEvent 和 detachEvent 两个函数来实现的。依旧看几个例子吧—</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.attach<span class="constructor">Event(‘<span class="params">onload</span>’,<span class="params">function</span>()</span>&#123;…&#125;);</span><br><span class="line">document.body.attach<span class="constructor">Event(‘<span class="params">onkeypress</span>’,<span class="params">myKeyHandler</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现它跟 W3C 的区别是没有第三个参数，而且第一个表示事件类型的参数也必须把’on’给加上。这种方式的优点就是能绑定多个事件处理函数在同一个 DOM 元素上。</p>
+<p>至于它的缺点，为什么如今在实际开发中很少见呢？首先 IE 浏览器本身只支持 Bubbling 不支持 Capturing；而且在事件处理的 function 内部 this 关键字也无法使用，因为 this 永远都只想 window object 这个全局对象。要想得到 event 对象必须通过 window.event 方式，最后一点，在别的浏览器中，它显然是无法工作的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/08/03/git/semver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/03/git/semver/" class="post-title-link" itemprop="url">语义化版本 SemVer</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-03T00:00:00+08:00">2019-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h4><p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
+<ol>
+<li><p>主版本号：当你做了不兼容的 API 修改，</p>
+</li>
+<li><p>次版本号：当你做了向下兼容的功能性新增，</p>
+</li>
+<li><p>修订号：当你做了向下兼容的问题修正。</p>
+</li>
+</ol>
+<p>先行版本号及版本编译元数据可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>在软件管理的领域里存在着被称作“依赖地狱”的死亡之谷，系统规模越大，加入的包越多，你就越有可能在未来的某一天发现自己已深陷绝望之中。</p>
+<p>在依赖高的系统中发布新版本包可能很快会成为噩梦。如果依赖关系过高，可能面临版本控制被锁死的风险（必须对每一个依赖包改版才能完成某次升级）。而如果依赖关系过于松散，又将无法避免版本的混乱（假设兼容于未来的多个版本已超出了合理数量）。当你专案的进展因为版本依赖被锁死或版本混乱变得不够简便和可靠，就意味着你正处于依赖地狱之中。</p>
+<p>作为这个问题的解决方案之一，我提议用一组简单的规则及条件来约束版本号的配置和增长。这些规则是根据（但不局限于）已经被各种封闭、开放源码软件所广泛使用的惯例所设计。为了让这套理论运作，你必须先有定义好的公共 API 。这可以透过文件定义或代码强制要求来实现。无论如何，这套 API 的清楚明了是十分重要的。一旦你定义了公共 API，你就可以透过修改相应的版本号来向大家说明你的修改。考虑使用这样的版本号格式：X.Y.Z （主版本号.次版本号.修订号）修复问题但不影响 API 时，递增修订号；API 保持向下兼容的新增及修改时，递增次版本号；进行不向下兼容的修改时，递增主版本号。</p>
+<p>我称这套系统为“语义化的版本控制”，在这套约定下，版本号及其更新方式包含了相邻版本间的底层代码和修改内容的信息。</p>
+<p>语义化版本控制规范（SemVer）<br>以下关键词 MUST、MUST NOT、REQUIRED、SHALL、SHALL NOT、SHOULD、SHOULD NOT、 RECOMMENDED、MAY、OPTIONAL 依照 RFC 2119 的叙述解读。（译注：为了保持语句顺畅， 以下文件遇到的关键词将依照整句语义进行翻译，在此先不进行个别翻译。）</p>
+<ol>
+<li><p>使用语义化版本控制的软件必须（MUST）定义公共 API。该 API 可以在代码中被定义或出现于严谨的文件内。无论何种形式都应该力求精确且完整。</p>
+</li>
+<li><p>标准的版本号必须（MUST）采用 X.Y.Z 的格式，其中 X、Y 和 Z 为非负的整数，且禁止（MUST NOT）在数字前方补零。X 是主版本号、Y 是次版本号、而 Z 为修订号。每个元素必须（MUST）以数值来递增。例如：1.9.1 -&gt; 1.10.0 -&gt; 1.11.0。</p>
+</li>
+<li><p>标记版本号的软件发行后，禁止（MUST NOT）改变该版本软件的内容。任何修改都必须（MUST）以新版本发行。</p>
+</li>
+<li><p>主版本号为零（0.y.z）的软件处于开发初始阶段，一切都可能随时被改变。这样的公共 API 不应该被视为稳定版。</p>
+</li>
+<li><p>1.0.0 的版本号用于界定公共 API 的形成。这一版本之后所有的版本号更新都基于公共 API 及其修改内容。<br>修订号 Z（x.y.Z x &gt; 0）必须（MUST）在只做了向下兼容的修正时才递增。这里的修正指的是针对不正确结果而进行的内部修改。<br>次版本号 Y（x.Y.z  x &gt; 0）必须（MUST）在有向下兼容的新功能出现时递增。在任何公共 API 的功能被标记为弃用时也必须（MUST）递增。也可以（MAY）在内部程序有大量新功能或改进被加入时递增，其中可以（MAY）包括修订级别的改变。每当次版本号递增时，修订号必须（MUST）归零。<br>主版本号 X（X.y.z  X &gt; 0）必须（MUST）在有任何不兼容的修改被加入公共 API 时递增。其中可以（MAY）包括次版本号及修订级别的改变。每当主版本号递增时，次版本号和修订号必须（MUST）归零。</p>
+</li>
+<li><p>先行版本号可以（MAY）被标注在修订版之后，先加上一个连接号再加上一连串以句点分隔的标识符来修饰。标识符必须（MUST）由 ASCII 字母数字和连接号 [0-9A-Za-z-] 组成，且禁止（MUST NOT）留白。数字型的标识符禁止（MUST NOT）在前方补零。先行版的优先级低于相关联的标准版本。被标上先行版本号则表示这个版本并非稳定而且可能无法满足预期的兼容性需求。范例：1.0.0-alpha、1.0.0-alpha.1、1.0.0-0.3.7、1.0.0-x.7.z.92。</p>
+</li>
+<li><p>版本编译元数据可以（MAY）被标注在修订版或先行版本号之后，先加上一个加号再加上一连串以句点分隔的标识符来修饰。标识符必须（MUST）由 ASCII 字母数字和连接号 [0-9A-Za-z-] 组成，且禁止（MUST NOT）留白。当判断版本的优先层级时，版本编译元数据可（SHOULD）被忽略。因此当两个版本只有在版本编译元数据有差别时，属于相同的优先层级。范例：1.0.0-alpha+001、1.0.0+20130313144700、1.0.0-beta+exp.sha.5114f85。</p>
+</li>
+<li><p>版本的优先层级指的是不同版本在排序时如何比较。判断优先层级时，必须（MUST）把版本依序拆分为主版本号、次版本号、修订号及先行版本号后进行比较（版本编译元数据不在这份比较的列表中）。由左到右依序比较每个标识符，第一个差异值用来决定优先层级：主版本号、次版本号及修订号以数值比较，例如：1.0.0 &lt; 2.0.0 &lt; 2.1.0 &lt; 2.1.1。当主版本号、次版本号及修订号都相同时，改以优先层级比较低的先行版本号决定。例如：1.0.0-alpha &lt; 1.0.0。有相同主版本号、次版本号及修订号的两个先行版本号，其优先层级必须（MUST）透过由左到右的每个被句点分隔的标识符来比较，直到找到一个差异值后决定：只有数字的标识符以数值高低比较，有字母或连接号时则逐字以 ASCII 的排序来比较。数字的标识符比非数字的标识符优先层级低。若开头的标识符都相同时，栏位比较多的先行版本号优先层级比较高。范例：1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.0.0-beta &lt; 1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0-rc.1 &lt; 1.0.0。</p>
+</li>
+</ol>
+<p>为什么要使用语义化的版本控制？</p>
+<p>这并不是一个新的或者革命性的想法。实际上，你可能已经在做一些近似的事情了。问题在于只是“近似”还不够。如果没有某个正式的规范可循，版本号对于依赖的管理并无实质意义。将上述的想法命名并给予清楚的定义，让你对软件使用者传达意向变得容易。一旦这些意向变得清楚，弹性（但又不会太弹性）的依赖规范就能达成。</p>
+<p>举个简单的例子就可以展示语义化的版本控制如何让依赖地狱成为过去。假设有个名为“救火车”的函式库，它需要另一个名为“梯子”并已经有使用语义化版本控制的包。当救火车创建时，梯子的版本号为 3.1.0。因为救火车使用了一些版本 3.1.0 所新增的功能， 你可以放心地指定依赖于梯子的版本号大等于 3.1.0 但小于 4.0.0。这样，当梯子版本 3.1.1 和 3.2.0 发布时，你可以将直接它们纳入你的包管理系统，因为它们能与原有依赖的软件兼容。</p>
+<p>作为一位负责任的开发者，你理当确保每次包升级的运作与版本号的表述一致。现实世界是复杂的，我们除了提高警觉外能做的不多。你所能做的就是让语义化的版本控制为你提供一个健全的方式来发行以及升级包，而无需推出新的依赖包，节省你的时间及烦恼。</p>
+<p>如果你对此认同，希望立即开始使用语义化版本控制，你只需声明你的函式库正在使用它并遵循这些规则就可以了。请在你的 README 文件中保留此页连结，让别人也知道这些规则并从中受益。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/06/15/arch/unit-test/unit-test-quickstart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/15/arch/unit-test/unit-test-quickstart/" class="post-title-link" itemprop="url">单元测试 - 简介</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-15T00:00:00+08:00">2019-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="测试的类型"><a href="#测试的类型" class="headerlink" title="测试的类型"></a>测试的类型</h2><ul>
+<li>单元测试 Unit Test</li>
+<li>集成测试 Integration Test</li>
+<li>端到端测试 End-to-end Test</li>
+<li>用户接受性测试 Acceptance Test</li>
+</ul>
+<h2 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h2><ul>
+<li>“单元测试”是一段由开发人员编写的测试代码，用于测试尽可能小的一个功能。</li>
+<li>“单元测试”保证了<ul>
+<li>干的事儿和你想的一样，和需求一致</li>
+<li>并且以后也保持如此</li>
+</ul>
+</li>
+<li>根据输入和输出，一个功能可能需要有多个单元测试。</li>
+</ul>
+<p>##为什么写单元测试？</p>
+<ul>
+<li>实现简单</li>
+<li>运行快</li>
+<li>稳定性强</li>
+<li>投入少回报高</li>
+</ul>
+<h2 id="都要测些什么？"><a href="#都要测些什么？" class="headerlink" title="都要测些什么？"></a>都要测些什么？</h2><ul>
+<li>测试正面情况（Positive）</li>
+<li>测试负面情况（Negative）</li>
+<li>测试分支（Branching）</li>
+<li>测试边界值（Edge Cases）</li>
+</ul>
+<p>##怎么写？</p>
+<h3 id="单元测试工具"><a href="#单元测试工具" class="headerlink" title="单元测试工具"></a>单元测试工具</h3><ul>
+<li>Jest<ul>
+<li>Facebook 出品</li>
+<li>适用于任何 JavaScript/TypeScript 项目</li>
+<li>快！</li>
+</ul>
+</li>
+</ul>
+<h3 id="基础工具"><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h3><ul>
+<li>describe() 一个测试套件 (Test Suite)</li>
+<li>it() 一个测试用例 (Test Case)</li>
+<li>expect() 一个断言 (assertion)<ul>
+<li>toBe(), toEqual(), toMatch(), …</li>
+</ul>
+</li>
+</ul>
+<h3 id="简单的单元测试"><a href="#简单的单元测试" class="headerlink" title="简单的单元测试"></a>简单的单元测试</h3><h3 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h3><ul>
+<li>Jest<ul>
+<li>jest.fn()</li>
+</ul>
+</li>
+<li>Sinon<ul>
+<li>fake/stub/mock</li>
+</ul>
+</li>
+</ul>
+<h3 id="复杂的单元测试"><a href="#复杂的单元测试" class="headerlink" title="复杂的单元测试"></a>复杂的单元测试</h3><h3 id="越来越多的依赖"><a href="#越来越多的依赖" class="headerlink" title="越来越多的依赖"></a>越来越多的依赖</h3><ul>
+<li>依赖注入 Dependency Injection<ul>
+<li>依赖反转原则 Dependency Inversion</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是好的单元测试？"><a href="#什么是好的单元测试？" class="headerlink" title="什么是好的单元测试？"></a>什么是好的单元测试？</h2><ul>
+<li>跑得快</li>
+<li>不容易坏</li>
+<li>一目了然</li>
+<li>抓得住 Bug！</li>
+<li>投入产出比得当</li>
+</ul>
+<h3 id="常用原则"><a href="#常用原则" class="headerlink" title="常用原则"></a>常用原则</h3><ul>
+<li>一个测试用例测一件事（单一责任原则）</li>
+<li>描述清晰，言简意赅</li>
+<li>没有 if/for/while…</li>
+<li>业务逻辑里没有测试逻辑（测试不该影响业务实现）</li>
+<li>（未完待续。。。</li>
+</ul>
+<h3 id="开头难"><a href="#开头难" class="headerlink" title="开头难"></a>开头难</h3><ul>
+<li>React/Node/Cocos，结构迥异。</li>
+<li>不同类型的测试对象，适用的方法不一样。</li>
+<li>每个人都有自己的想法，测试的方式八仙过海。</li>
+</ul>
+<h3 id="总结经验"><a href="#总结经验" class="headerlink" title="总结经验"></a>总结经验</h3><ul>
+<li>写测试 -&gt; 总结经验 -&gt; 推广好的测试方式。</li>
+<li>改进工具，降低测试门槛。<ol>
+<li>增加通用的测试工具函数/类 (Utilities)</li>
+<li>利用开发工具自动化<ol>
+<li>TS Lint 提示/自动生成测试</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<p>##测试驱动开发<br>Test-driven Development</p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><ul>
+<li><a href="https://jestjs.io/zh-Hans/" target="_blank" rel="noopener">https://jestjs.io/zh-Hans/</a></li>
+<li><a href="https://www.slideshare.net/homespothq/unit-testing-concepts-and-best-practices" target="_blank" rel="noopener">https://www.slideshare.net/homespothq/unit-testing-concepts-and-best-practices</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25939152" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25939152</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://littletommytan.colorcat.online/2019/06/11/git/sprase-checkout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="littletommytan">
+      <meta itemprop="description" content="Advanced Front-end Engineer in a 越用越香的购物平台">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="水滴石穿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/11/git/sprase-checkout/" class="post-title-link" itemprop="url">Git 稀疏检出</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-11T00:00:00+08:00">2019-06-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-04 13:13:15" itemprop="dateModified" datetime="2023-07-04T13:13:15+08:00">2023-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="git-支持只-Checkout-部分内容（注意：Git-版本要在-1-7-以上）"><a href="#git-支持只-Checkout-部分内容（注意：Git-版本要在-1-7-以上）" class="headerlink" title="git 支持只 Checkout 部分内容（注意：Git 版本要在 1.7 以上）"></a>git 支持只 Checkout 部分内容（注意：Git 版本要在 1.7 以上）</h5><h4 id="1、开启"><a href="#1、开启" class="headerlink" title="1、开启"></a>1、开启</h4><p>git config core.sparsecheckout true ，也可以在目录 .git/config 中看到</p>
+<p>图片描述</p>
+<h4 id="2、写入要获取的文件"><a href="#2、写入要获取的文件" class="headerlink" title="2、写入要获取的文件"></a>2、写入要获取的文件</h4><p>echo “/*“ &gt;&gt; .git/info/sparse-checkout ，也可以在目录 .git/info/sparse-checkout 中直接修改需要获取的文件配置</p>
+<p>我们 C3 需要的配置如图：</p>
+<p>图片描述</p>
+<p>方便你更快，可以拷贝一下：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">!<span class="regexp">/assets/courses</span><span class="regexp">/C1</span></span><br><span class="line"><span class="regexp">!/assets</span><span class="regexp">/courses/</span>C2</span><br><span class="line">!<span class="regexp">/assets/courses</span><span class="regexp">/C1.meta</span></span><br><span class="line"><span class="regexp">!/assets</span><span class="regexp">/courses/</span>C2.meta</span><br><span class="line">!<span class="regexp">/assets/resources</span><span class="regexp">/C1</span></span><br><span class="line"><span class="regexp">!/assets</span><span class="regexp">/resources/</span>C2</span><br><span class="line">!<span class="regexp">/assets/resources</span><span class="regexp">/C1.meta</span></span><br><span class="line"><span class="regexp">!/assets</span><span class="regexp">/resources/</span>C2.meta</span><br></pre></td></tr></table></figure>
+
+<p><em>解释：<br>通配符</em><br>排除项！<br>目录名称前带斜杠，如/docs/，将只匹配项目根目录下的 docs 目录，<br>目录名称前不带斜杠，如 docs/，其他目录下如果也有这个名称的目录，如 test/docs/也能被匹配<br>如果写了多级目录，如 docs/05/，则不管前面是否带有斜杠，都只匹配项目根目录下的目录，如 test/docs/05/不能被匹配。</p>
+<h4 id="3、配置完以后生效"><a href="#3、配置完以后生效" class="headerlink" title="3、配置完以后生效"></a>3、配置完以后生效</h4><p>git checkout</p>
+<h4 id="4、生效以后可能遇到的问题"><a href="#4、生效以后可能遇到的问题" class="headerlink" title="4、生效以后可能遇到的问题"></a>4、生效以后可能遇到的问题</h4><p>生效以后你可能还会看到一些空目录仍然存在，比如目录/assets/courses/C1，这时候你可以删除你在.git/info/sparse-checkout</p>
+<p>文件中配置的排除项希望去掉的目录。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="littletommytan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">littletommytan</p>
+  <div class="site-description" itemprop="description">Advanced Front-end Engineer in a 越用越香的购物平台</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/littletommytan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;littletommytan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/982771996@qq.com" title="E-Mail → 982771996@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备18109713号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-snowflake-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littletommytan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
